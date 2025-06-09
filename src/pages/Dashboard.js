@@ -1,4 +1,5 @@
 import {
+    LineChart,
     Line,
     XAxis,
     YAxis,
