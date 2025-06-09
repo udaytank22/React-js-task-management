@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {
-  FaCommentDots, FaSearch, FaCogs, FaRegQuestionCircle, FaUserCog,
+  FaCogs, FaRegQuestionCircle, FaUserCog,
   FaHome,
-  FaRProject,
   FaCodepen,
+  FaTasks,
 } from "react-icons/fa";
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 import { logout } from "../utils/auth";
@@ -18,6 +18,7 @@ export default function Sidebar() {
   const menuItems = [
     { icon: <FaHome />, label: "Home" },
     { icon: <FaCodepen />, label: "Project" },
+    { icon: <FaTasks />, label: "Tasks" },
     { icon: <FaUserCog />, label: "Manage" },
     { icon: <FaRegQuestionCircle />, label: "FAQ" },
     { icon: <FaCogs />, label: "Settings" },
