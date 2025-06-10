@@ -15,9 +15,10 @@ export default function LoginForm() {
     setIsLoading(true);
     e.preventDefault();
     try {
-      const { token } = await loginUser({ username: username, password });
+      const token = await loginUser({ username: username, password });
+      console.log("Login successful, token:", token.data.api_token);
       setIsLoading(false);
-      setToken(token);
+      setToken(token.data.api_token);
       navigate("/dashboard");
     } catch (err) {
       setError("Invalid username or password");
@@ -50,7 +51,6 @@ export default function LoginForm() {
         />
       </div>
 
-
       {error && <div className="alert alert-danger py-2">{error}</div>}
 
       <button
@@ -71,7 +71,6 @@ export default function LoginForm() {
           "Login"
         )}
       </button>
-
     </form>
   );
 }

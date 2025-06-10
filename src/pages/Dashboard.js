@@ -1,147 +1,193 @@
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-    BarChart,
-    Bar,
-    Legend,
-} from "recharts";
+import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css"; // Ensure you have bootstrap-icons imported
+import "./Dashboard.css"; // We'll create this for custom styles
+import { fetchTotalCount } from "../api/Auth"; // Assuming fetchPerformanceReport is not directly used here
 
 export default function Dashboard() {
-    return (
-        <div className="container mt-5">
-            <h3 className="mb-4 fw-bold">Dashboard Overview</h3>
-            <div className="row">
-                {/* Pending Tasks */}
-                <div className="col-md-4">
-                    <div className="card shadow-sm border-0 h-100 bg-warning-subtle">
-                        <div className="card-body d-flex flex-column justify-content-center align-items-start">
-                            <div className="mb-3">
-                                <i className="bi bi-hourglass-split fs-2 text-warning"></i>
-                            </div>
-                            <h5 className="card-title fw-semibold">Pending Tasks</h5>
-                            <p className="card-text">Total Pending Tasks: <strong>22</strong></p>
-                        </div>
-                    </div>
-                </div>
+  const [data, setData] = useState({
+    pendingTasks: 0,
+    inProgressTasks: 0,
+    completedTasks: 0,
+    targetHours: 0, // Ensure these are numeric, or handle NaN
+    completedHours: 0, // Ensure these are numeric, or handle NaN
+  });
 
-                {/* In Progress Tasks */}
-                <div className="col-md-4">
-                    <div className="card shadow-sm border-0 h-100 bg-info-subtle">
-                        <div className="card-body d-flex flex-column justify-content-center align-items-start">
-                            <div className="mb-3">
-                                <i className="bi bi-arrow-repeat fs-2 text-info"></i>
-                            </div>
-                            <h5 className="card-title fw-semibold">In Progress</h5>
-                            <p className="card-text">Total In-Progress Tasks: <strong>10</strong></p>
-                        </div>
-                    </div>
-                </div>
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await fetchTotalCount(); // Assuming this returns an object like { pending, in_progress, completed, target_hours, worked_hours }
 
-                {/* Completed Tasks */}
-                <div className="col-md-4">
-                    <div className="card shadow-sm border-0 h-100 bg-success-subtle">
-                        <div className="card-body d-flex flex-column justify-content-center align-items-start">
-                            <div className="mb-3">
-                                <i className="bi bi-check-circle fs-2 text-success"></i>
-                            </div>
-                            <h5 className="card-title fw-semibold">Completed Tasks</h5>
-                            <p className="card-text">Total Completed Tasks: <strong>34</strong></p>
-                        </div>
-                    </div>
-                </div>
+        setData({
+          pendingTasks: res.pending || 0,
+          inProgressTasks: res.in_progress || 0,
+          completedTasks: res.completed || 0,
+          targetHours: res.target_hours || 0,
+          completedHours: res.worked_hours || 0,
+        });
+      } catch (err) {
+        console.error("Error loading dashboard data:", err.message);
+        // Optionally, set default data or show an error message in UI
+        setData({
+          pendingTasks: 0,
+          inProgressTasks: 0,
+          completedTasks: 0,
+          targetHours: 0,
+          completedHours: 0,
+        });
+      }
+    };
+
+    loadData();
+  }, []);
+
+  // Calculate progress percentage
+  const attendanceProgress =
+    data.targetHours > 0 ? (data.completedHours / data.targetHours) * 100 : 0;
+  // Ensure progress doesn't exceed 100% visually
+  const clampedAttendanceProgress = Math.min(attendanceProgress, 100);
+
+  return (
+    <div className="container py-5 dashboard-container">
+      <header className="text-left mb-5 animate__animated animate__fadeIn">
+        <h2 className="display-7 fw-bold text-gradient">
+          Dashboard Overview
+        </h2>
+        <p className="lead text-muted">
+          A quick glance at your task progress and attendance summary.
+        </p>
+      </header>
+
+      {/* Task Summary Cards */}
+      <div className="row g-4 mb-5">
+        {" "}
+        {/* Increased gutter and bottom margin */}
+        {/* Pending Tasks */}
+        <div className="col-lg-4 col-md-6">
+          <div className="card h-100 task-card pending-card shadow-sm border-start border-warning border-4 rounded-3">
+            <div className="card-body d-flex align-items-center">
+              <div className="icon-wrapper bg-warning-subtle text-warning me-4">
+                <i className="bi bi-hourglass-split fs-3"></i>
+              </div>
+              <div>
+                <h5 className="card-title text-warning fw-semibold mb-1">
+                  Pending Tasks
+                </h5>
+                <p className="card-text fs-4 fw-bold mb-0">
+                  {data.pendingTasks}
+                </p>
+              </div>
             </div>
-
-            <div className="row g-4 mt-4">
-                {/* Total Attendance Target Card */}
-                <div className="col-md-6">
-                    <div className="card border-0 shadow-sm">
-                        <div className="card-body">
-                            <h5 className="card-title">Total Attendance Target</h5>
-                            <p className="card-text">
-                                Target Hours: <strong>160 hrs</strong>
-                            </p>
-                            <div className="progress" style={{ height: "20px" }}>
-                                <div
-                                    className="progress-bar bg-secondary"
-                                    style={{ width: "100%" }}
-                                >
-                                    160 hrs
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Working Hours Achieved */}
-                <div className="col-md-6">
-                    <div className="card border-0 shadow-sm">
-                        <div className="card-body">
-                            <h5 className="card-title">Total Hours Worked</h5>
-                            <p className="card-text">
-                                Completed: <strong>145 hrs</strong>
-                            </p>
-                            <div className="progress" style={{ height: "20px" }}>
-                                <div
-                                    className="progress-bar bg-success"
-                                    role="progressbar"
-                                    style={{ width: `${(145 / 160) * 100}%` }}
-                                    aria-valuenow={145}
-                                    aria-valuemin={0}
-                                    aria-valuemax={160}
-                                >
-                                    145 hrs
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        {/* In Progress Tasks */}
+        <div className="col-lg-4 col-md-6">
+          <div className="card h-100 task-card inprogress-card shadow-sm border-start border-info border-4 rounded-3">
+            <div className="card-body d-flex align-items-center">
+              <div className="icon-wrapper bg-info-subtle text-info me-4">
+                <i className="bi bi-arrow-repeat fs-3"></i>
+              </div>
+              <div>
+                <h5 className="card-title text-info fw-semibold mb-1">
+                  In Progress
+                </h5>
+                <p className="card-text fs-4 fw-bold mb-0">
+                  {data.inProgressTasks}
+                </p>
+              </div>
             </div>
+          </div>
+        </div>
+        {/* Completed Tasks */}
+        <div className="col-lg-4 col-md-12">
+          {" "}
+          {/* Takes full width on MD, to prevent odd wrapping */}
+          <div className="card h-100 task-card completed-card shadow-sm border-start border-success border-4 rounded-3">
+            <div className="card-body d-flex align-items-center">
+              <div className="icon-wrapper bg-success-subtle text-success me-4">
+                <i className="bi bi-check-circle fs-3"></i>
+              </div>
+              <div>
+                <h5 className="card-title text-success fw-semibold mb-1">
+                  Completed Tasks
+                </h5>
+                <p className="card-text fs-4 fw-bold mb-0">
+                  {data.completedTasks}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
-            {/* <div className="row g-4">
-                Attendance Chart
-                <div className="col-md-6">
-                    <div className="card shadow-sm border-0 h-100">
-                        <div className="card-body">
-                            <h5 className="card-title fw-semibold mb-3">Attendance Overview</h5>
-                            <ResponsiveContainer width="100%" height={250}>
-                                <LineChart data={attendanceData}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="day" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Line type="monotone" dataKey="present" stroke="#0d6efd" />
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
+      {/* Attendance Progress Section */}
+      <div className="row g-4">
+        {" "}
+        {/* Consistent gutter */}
+        {/* Target vs Completed Hours */}
+        <div className="col-lg-6">
+          <div className="card border-0 shadow-sm h-100 attendance-card">
+            <div className="card-body">
+              <h5 className="card-title mb-4 fw-semibold">
+                Attendance Progress
+              </h5>
+              <div className="d-flex justify-content-between mb-2">
+                <p className="mb-0 text-muted">
+                  Completed: <strong>{data.completedHours} hrs</strong>
+                </p>
+                <p className="mb-0 text-muted">
+                  Target: <strong>{data.targetHours} hrs</strong>
+                </p>
+              </div>
+              <div
+                className="progress attendance-progress"
+                style={{ height: "25px" }}
+              >
+                <div
+                  className="progress-bar bg-primary"
+                  role="progressbar"
+                  style={{ width: `${clampedAttendanceProgress}%` }}
+                  aria-valuenow={data.completedHours}
+                  aria-valuemin="0"
+                  aria-valuemax={data.targetHours}
+                >
+                  {clampedAttendanceProgress.toFixed(1)}%{" "}
+                  {/* Display percentage with one decimal */}
                 </div>
-
-                Working Hours Chart
-                <div className="col-md-6">
-                    <div className="card shadow-sm border-0 h-100">
-                        <div className="card-body">
-                            <h5 className="card-title fw-semibold mb-3">Working Hours</h5>
-                            <ResponsiveContainer width="100%" height={250}>
-                                <BarChart data={hoursData}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="day" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Bar dataKey="hours" fill="#198754" />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-        </div >
-    );
+              </div>
+              {attendanceProgress >= 100 && (
+                <p className="text-success small mt-2 mb-0">
+                  Excellent! Target hours achieved.
+                </p>
+              )}
+              {attendanceProgress < 100 && attendanceProgress > 0 && (
+                <p className="text-info small mt-2 mb-0">
+                  Keep up the good work! You're{" "}
+                  {(data.targetHours - data.completedHours || 0).toFixed(1)}{" "}
+                  hours away from your target.
+                </p>
+              )}
+              {attendanceProgress === 0 && (
+                <p className="text-muted small mt-2 mb-0">
+                  No hours logged yet for this period.
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+        {/* Placeholder for another chart/card */}
+        <div className="col-lg-6">
+          <div className="card border-0 shadow-sm h-100 placeholder-card">
+            <div className="card-body d-flex flex-column justify-content-center align-items-center text-muted">
+              <i className="bi bi-graph-up-arrow fs-1 mb-3"></i>
+              <h5 className="card-title">Future Insights</h5>
+              <p className="card-text text-center">
+                More detailed performance metrics coming soon!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
