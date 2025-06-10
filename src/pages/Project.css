@@ -1,0 +1,81 @@
+/* Modal custom styles */
+.modal {
+  transition: all 0.3s ease;
+}
+
+.modal.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-radius: 0;
+}
+
+/* Text gradient for header */
+.text-gradient {
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Project card hover effect */
+.project-card {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Search box styling */
+.search-box {
+  position: relative;
+  width: 300px;
+}
+
+.search-box i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.search-box input {
+  padding-left: 40px;
+  border-radius: 20px;
+}
+
+/* Project meta info styling */
+.project-meta small {
+  font-size: 0.85rem;
+}
+
+/* Status badges */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-box {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .d-flex.justify-content-between.mb-4 {
+    flex-direction: column;
+  }
+}

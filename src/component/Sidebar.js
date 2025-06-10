@@ -1,12 +1,15 @@
 import { useState } from "react";
 import {
-  FaCogs, FaRegQuestionCircle, FaUserCog,
+  FaCogs,
+  FaRegQuestionCircle,
+  FaUserCog,
   FaHome,
   FaCodepen,
   FaTasks,
 } from "react-icons/fa";
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 import { logout } from "../utils/auth";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -16,8 +19,8 @@ export default function Sidebar() {
   };
 
   const menuItems = [
-    { icon: <FaHome />, label: "Home" },
-    { icon: <FaCodepen />, label: "Project" },
+    { icon: <FaHome />, label: "Home", path: "/dashboard" },
+    { icon: <FaCodepen />, label: "project", path: "/project" },
     { icon: <FaTasks />, label: "Tasks" },
     { icon: <FaUserCog />, label: "Manage" },
     { icon: <FaRegQuestionCircle />, label: "FAQ" },
@@ -48,10 +51,13 @@ export default function Sidebar() {
         <ul className="nav flex-column gap-2">
           {menuItems.map((item, index) => (
             <li key={index} className="nav-item">
-              <a href="#" className="nav-link d-flex align-items-center text-white">
+              <Link // Use Link instead of <a>
+                to={item.path} // Use the path property for navigation
+                className="nav-link d-flex align-items-center text-white"
+              >
                 <span className="me-2 fs-5">{item.icon}</span>
                 {!collapsed && <span>{item.label}</span>}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -70,7 +76,6 @@ export default function Sidebar() {
           {!collapsed ? "© 2025 TaskFlow" : "©"}
         </small>
       </div>
-
     </div>
   );
 }

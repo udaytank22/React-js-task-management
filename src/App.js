@@ -1,9 +1,15 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Home from "./Home";
 import Sidebar from "./component/Sidebar";
+import Project from "./pages/Project";
 
 function AppLayout() {
   const location = useLocation();
@@ -13,18 +19,33 @@ function AppLayout() {
   return (
     <div className="d-flex">
       {!shouldHideSidebar && <Sidebar />}
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <div
+        className="flex-grow-1 overflow-auto"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/project"
+            element={
+              <ProtectedRoute>
+                <Project />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </div>
     </div>
   );
 }

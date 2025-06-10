@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+/* Layout styles */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.content-area.with-sidebar {
+  margin-left: 250px; /* Adjust this to match your sidebar width */
+}
+
+/* Sidebar styles (adjust these to match your existing sidebar) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px; /* Match this with the margin-left above */
+  overflow-y: auto;
+  z-index: 1000;
+  background: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
