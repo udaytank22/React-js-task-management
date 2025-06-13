@@ -21,8 +21,8 @@ export default function Sidebar() {
   const menuItems = [
     { icon: <FaHome />, label: "Home", path: "/dashboard" },
     { icon: <FaCodepen />, label: "project", path: "/project" },
-    { icon: <FaTasks />, label: "Tasks" },
-    { icon: <FaUserCog />, label: "Manage" },
+    { icon: <FaTasks />, label: "Tasks", path: "/tasks" },
+    { icon: <FaUserCog />, label: "Profile", path: '/profile' },
     { icon: <FaRegQuestionCircle />, label: "FAQ" },
     { icon: <FaCogs />, label: "Settings" },
   ];

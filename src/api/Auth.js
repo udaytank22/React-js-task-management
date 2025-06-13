@@ -96,3 +96,31 @@ export async function fetchProjectList() {
   console.log("Total count response:", data);
   return data;
 }
+
+const projectModuleList = `${process.env.REACT_APP_BASE_URL}get-project-by-work-module-name`;
+
+export async function fetchProjectModuleList({ projectId }) {
+  const token = getToken();
+  console.log("Token in fetchProjectList:", token);
+  // Get token from localStorage/session
+
+  const res = await fetch(projectModuleList, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Attach the token here
+      body: JSON.stringify({ projectId }), // If no body is required, keep it empty
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Login failed");
+  }
+  if (!res.ok) {
+    throw new Error("Failed to fetch count");
+  }
+
+  const data = await res.json();
+  console.log("Total count response:", data);
+  return data;
+}

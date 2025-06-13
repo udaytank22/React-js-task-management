@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
   useLocation,
 } from "react-router-dom";
 import Login from "./pages/Login";
@@ -10,6 +11,8 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Home from "./Home";
 import Sidebar from "./component/Sidebar";
 import Project from "./pages/Project";
+import TaskDashboard from "./pages/Tasks";
+import ProfilePage from "./pages/Profile";
 
 function AppLayout() {
   const location = useLocation();
@@ -27,7 +30,6 @@ function AppLayout() {
       >
         <Routes>
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/" element={<Home />} /> */}
           <Route
             path="/dashboard"
             element={
@@ -44,6 +46,24 @@ function AppLayout() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/tasks"
+            element={
+              <ProtectedRoute>
+                <TaskDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          {/* Default route: redirect from / to /dashboard */}
+          <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </div>
     </div>
