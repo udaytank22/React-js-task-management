@@ -4,7 +4,7 @@ import { taskReducer, moduleReducer, projectReducer } from "./taskSlice";
 export const store = configureStore({
   reducer: {
     tasks: taskReducer,
-    modules: moduleReducer,
+    // modules: moduleReducer,
     projects: projectReducer,
   },
 });

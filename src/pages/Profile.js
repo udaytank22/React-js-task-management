@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -17,27 +12,6 @@ const ProfilePage = () => {
   const totalLeaves = 15;
   const usedLeaves = 5;
   const remainingLeaves = totalLeaves - usedLeaves;
-
-  const leaveHistory = [
-    {
-      date: "2024-07-15 to 2024-07-17",
-      type: "Vacation",
-      reason: "Family trip",
-      status: "Approved",
-    },
-    {
-      date: "2024-06-20",
-      type: "Sick Leave",
-      reason: "Flu",
-      status: "Approved",
-    },
-    {
-      date: "2024-05-10",
-      type: "Personal Leave",
-      reason: "Appointment",
-      status: "Rejected",
-    },
-  ];
 
   const weeklyAttendance = [
     {
@@ -77,6 +51,27 @@ const ProfilePage = () => {
     },
   ];
 
+  const leaveHistory = [
+    {
+      date: "2024-07-15 to 2024-07-17",
+      type: "Vacation",
+      reason: "Family trip",
+      status: "Approved",
+    },
+    {
+      date: "2024-06-20",
+      type: "Sick Leave",
+      reason: "Flu",
+      status: "Approved",
+    },
+    {
+      date: "2024-05-10",
+      type: "Personal Leave",
+      reason: "Appointment",
+      status: "Rejected",
+    },
+  ];
+
   const attendanceChart = {
     labels: ["Present", "Absent"],
     datasets: [
@@ -101,29 +96,29 @@ const ProfilePage = () => {
 
   const renderAttendance = () => (
     <>
-      <h6 className="mt-4">Attendance Tracker</h6>
-      <div className="row mb-4">
+      <h6 className="mb-3">Attendance Tracker</h6>
+      <div className="row text-center mb-4">
         <div className="col-md-4">
-          <div className="border rounded p-3 text-center">
-            <h5>{presentDays}</h5>
-            <p className="mb-0 text-muted">Present Days</p>
+          <div className="border rounded p-3 bg-light">
+            <h4 className="text-primary">{presentDays}</h4>
+            <p className="text-muted mb-0">Present Days</p>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="border rounded p-3 text-center">
-            <h5>{absentDays}</h5>
-            <p className="mb-0 text-muted">Absent Days</p>
+          <div className="border rounded p-3 bg-light">
+            <h4 className="text-warning">{absentDays}</h4>
+            <p className="text-muted mb-0">Absent Days</p>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="border rounded p-3 text-center">
-            <h5>{presentDays + absentDays}</h5>
-            <p className="mb-0 text-muted">Total Working Days</p>
+          <div className="border rounded p-3 bg-light">
+            <h4>{presentDays + absentDays}</h4>
+            <p className="text-muted mb-0">Total Working Days</p>
           </div>
         </div>
       </div>
 
-      <h6 className="mt-4">Latest Week's Attendance</h6>
+      <h6 className="mb-3">Latest Week's Attendance</h6>
       <div className="table-responsive">
         <table className="table table-bordered">
           <thead className="table-light">
@@ -144,12 +139,13 @@ const ProfilePage = () => {
                 <td>{entry.punchOut}</td>
                 <td>
                   <span
-                    className={`badge ${entry.status === "Full Day"
-                      ? "bg-success"
-                      : entry.status === "Half Day"
-                        ? "bg-warning text-dark"
-                        : "bg-danger"
-                      }`}
+                    className={`badge ${
+                      entry.status === "Full Day"
+                        ? "bg-success rounded-pill"
+                        : entry.status === "Half Day"
+                        ? "bg-warning text-dark rounded-pill"
+                        : "bg-danger rounded-pill"
+                    }`}
                   >
                     {entry.status}
                   </span>
@@ -161,33 +157,33 @@ const ProfilePage = () => {
       </div>
     </>
   );
-
   const renderLeaveManagement = () => (
     <>
-      <h6>Leave Management</h6>
-      <div className="row mb-3">
-        <div className="col-md-4">
-          <div className="border rounded p-3 text-center">
-            <h5>{totalLeaves}</h5>
-            <p className="mb-0 text-muted">Total Leaves</p>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="border rounded p-3 text-center">
-            <h5>{usedLeaves}</h5>
-            <p className="mb-0 text-muted">Used Leaves</p>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="border rounded p-3 text-center">
-            <h5>{remainingLeaves}</h5>
-            <p className="mb-0 text-muted">Remaining Leaves</p>
-          </div>
+      <div className="d-flex justify-content-between align-items-center">
+        <h6>Leave Management</h6>
+        <div className="mb-4">
+          <button className="btn btn-primary">Apply for Leave</button>
         </div>
       </div>
-
-      <div className="mb-4">
-        <button className="btn btn-primary">Apply for Leave</button>
+      <div className="row text-center mb-4">
+        <div className="col-md-4">
+          <div className="border rounded p-3 bg-light">
+            <h4 className="text-primary">{presentDays}</h4>
+            <p className="text-muted mb-0">Pending Leave</p>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="border rounded p-3 bg-light">
+            <h4 className="text-warning">{absentDays}</h4>
+            <p className="text-muted mb-0">Used Leave</p>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="border rounded p-3 bg-light">
+            <h4>{presentDays + absentDays}</h4>
+            <p className="text-muted mb-0">Total Leave</p>
+          </div>
+        </div>
       </div>
 
       <h6>Leave Application History</h6>
@@ -209,12 +205,13 @@ const ProfilePage = () => {
                 <td>{leave.reason}</td>
                 <td>
                   <span
-                    className={`badge ${leave.status === "Approved"
-                      ? "bg-success"
-                      : leave.status === "Rejected"
-                        ? "bg-danger"
-                        : "bg-secondary"
-                      }`}
+                    className={`badge ${
+                      leave.status === "Approved"
+                        ? "bg-success rounded-pill"
+                        : leave.status === "Rejected"
+                        ? "bg-danger rounded-pill"
+                        : "bg-secondary rounded-pill"
+                    }`}
                   >
                     {leave.status}
                   </span>
@@ -228,36 +225,35 @@ const ProfilePage = () => {
   );
 
   const renderPerformance = () => (
-    <>
-      <h6>Performance Overview</h6>
-      <div className="row mb-5">
-        <div className="col-md-6 text-center">
-          <h6>Attendance Distribution</h6>
-          <Pie data={attendanceChart} />
-        </div>
-        <div className="col-md-6 text-center">
-          <h6>Leave Usage</h6>
-          <Pie data={leaveChart} />
-        </div>
+    <div className="row mt-4">
+      <div className="col-md-6 text-center">
+        <h6>Attendance Distribution</h6>
+        <Pie data={attendanceChart} />
       </div>
-    </>
+      <div className="col-md-6 text-center">
+        <h6>Leave Usage</h6>
+        <Pie data={leaveChart} />
+      </div>
+    </div>
   );
 
   return (
     <div className="container my-5">
       {/* Profile Header */}
-      <div className="d-flex align-items-center justify-content-between mb-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
         <div className="d-flex align-items-center gap-3">
           <img
-            src="https://via.placeholder.com/80"
+            src="https://imgs.search.brave.com/xNdwmua1sddi8xogq2coQ0xFES263fs2TabIR5co4_E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tYXJr/ZXRwbGFjZS5jYW52/YS5jb20vRUFHTkto/SVB5Z0UvMi8wLzE2/MDB3L2NhbnZhLWJs/dWUtbWluaW1hbGlz/dC1jaXJjbGUtZnJh/bWVkLWluc3RhZ3Jh/bS1wcm9maWxlLXBp/Y3R1cmUteXdfUFRX/TnhkTmcuanBn"
             alt="Profile"
             className="rounded-circle"
-            width="80"
-            height="80"
+            width="70"
+            height="70"
           />
           <div>
             <h5 className="mb-0">Emily Carter</h5>
-            <small className="text-muted">Employee ID: 12345 | Marketing Department</small>
+            <small className="text-muted">
+              Employee ID: 12345 | Marketing Department
+            </small>
           </div>
         </div>
         <button className="btn btn-outline-secondary">Edit Profile</button>
@@ -268,7 +264,9 @@ const ProfilePage = () => {
         {["Attendance", "Leave Management", "Performance"].map((tab) => (
           <li className="nav-item" key={tab}>
             <button
-              className={`nav-link ${activeTab === tab ? "active" : ""}`}
+              className={`nav-link ${
+                activeTab === tab ? "active fw-bold" : ""
+              }`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}

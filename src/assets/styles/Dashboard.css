@@ -1,0 +1,123 @@
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Specific Card Body Padding for Dashboard */
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Monthly Summary Cards */
+.card .display-6 {
+  font-size: 2.5rem; /* Make the numbers slightly larger */
+}
+
+/* Progress Bar Customization */
+.progress {
+  height: 25px; /* Make progress bar taller */
+  border-radius: 0.5rem; /* Rounded corners */
+  overflow: hidden; /* Ensure content stays within rounded corners */
+}
+
+.progress-bar {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Running Tasks List */
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; /* Subtle separator */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.list-group-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Calendar Styling */
+.react-calendar-custom {
+  border-radius: 0.75rem; /* Match card shadow-sm */
+  border: none; /* Remove default border */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important; /* Match shadow-sm */
+  font-family: "Inter", sans-serif; /* Use Inter font */
+}
+
+.react-calendar__navigation button {
+  border-radius: 0.5rem; /* Rounded navigation buttons */
+  background: none; /* Remove default button background */
+  border: none;
+  color: #333;
+  font-size: 1.25rem; /* Make arrows slightly larger */
+  transition: background-color 0.2s;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: transparent;
+  color: #ccc;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none; /* Remove underline from weekday abbreviations */
+  font-weight: bold;
+  color: #6c757d; /* Muted color for weekdays */
+}
+
+.react-calendar__tile {
+  padding: 0.5em; /* Adjust padding for days */
+  border-radius: 0.5rem; /* Slightly rounded tiles */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.react-calendar__tile--now {
+  background-color: #e0f7fa !important; /* Light cyan for current day */
+  color: #007bff; /* Primary color for text */
+  font-weight: bold;
+}
+
+/* Custom Highlight for Task Deadlines */
+.highlight-calendar-day {
+  background-color: #d1e7dd !important; /* Light green for highlighting task range */
+  border-radius: 50%; /* Make it rounded */
+}
+
+.react-calendar__tile--active {
+  /* This is for selected date, ensure it stands out */
+  background-color: #0d6efd !important; /* Bootstrap primary blue */
+  color: white !important;
+}
+
+.react-calendar__tile:hover {
+  background-color: #f8f9fa; /* Light background on hover */
+}
+
+/* Indicator dot for tasks on a day */
+.task-indicator-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.task-count-badge {
+  background-color: #dc3545; /* Red badge */
+  color: white;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  width: 1.2em;
+  height: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1; /* Adjust line height for vertical centering */
+}

@@ -1,21 +1,56 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import "./Project.css";
+import "../assets/styles/Project.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addModule,
+  addModuleToProject,
   addProject,
   deleteProject,
   updateProject,
 } from "../redux/taskSlice";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+const FadeIn = ({ children, stagger = 0, y = 0, ref, className = "" }) => {
+  const el = useRef();
+  const animation = useRef();
+
+  useGSAP(
+    () => {
+      animation.current = gsap.from(el.current.children, {
+        opacity: 0,
+        stagger,
+        y,
+        ease: "power3.out", // Added ease for smoother animation
+      });
+    },
+    { scope: el }
+  ); // Added scope for GSAP context
+
+  useGSAP(() => {
+    // forward the animation instance
+    if (typeof ref === "function") {
+      ref(animation.current);
+    } else if (ref) {
+      ref.current = animation.current;
+    }
+  }, [ref]);
+
+  return (
+    <div ref={el} className={`table-responsive`}>
+      {children}
+    </div>
+  );
+};
 
 export default function Project() {
   const dispatch = useDispatch();
+  const animationRef = useRef();
 
-  const modules = useSelector((state) => state.modules ?? []);
+  // const modules = useSelector((state) => state.modules ?? []);
   const projects = useSelector((state) => state.projects ?? []);
   console.log("projects", projects);
   const [search, setSearch] = useState("");
@@ -41,10 +76,13 @@ export default function Project() {
 
   const handleSaveModule = () => {
     dispatch(
-      addModule({
-        id: Date.now(),
-        module_name: moduleFormData.module_name,
-        description: moduleFormData.description,
+      addModuleToProject({
+        projectId: currentModuleProject.id,
+        module: {
+          id: Date.now(),
+          module_name: moduleFormData.module_name,
+          description: moduleFormData.description,
+        },
       })
     );
     setShowAddModuleModal(false);
@@ -124,8 +162,6 @@ export default function Project() {
     return projectName.toLowerCase().includes(search.toLowerCase());
   });
 
-  console.log("filteredProjects", filteredProjects);
-
   return (
     <div className="mx-5 my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
@@ -159,70 +195,83 @@ export default function Project() {
         </button>
       </div>
 
-      <div className="row g-4">
-        {filteredProjects.map((project) => {
-          const startDate = new Date(project.start_date).toLocaleDateString(
-            "en-GB"
-          );
-          const endDate = project.end_date
-            ? new Date(project.end_date).toLocaleDateString("en-GB")
-            : null;
-          const duration = calculateDuration(
-            project.start_date,
-            project.end_date
-          );
+      <FadeIn stagger={0.1} y={1000} ref={animationRef}>
+        <table className="table table-bordered table-hover align-middle table-striped">
+          <thead className="table-light">
+            <tr>
+              <th>#</th>
+              <th>Project Name</th>
+              <th>Description</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Duration</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProjects.length === 0 ? (
+              <tr>
+                <td colSpan="8" className="text-center text-muted">
+                  No projects found.
+                </td>
+              </tr>
+            ) : (
+              filteredProjects.map((project, index) => {
+                const startDate = new Date(
+                  project.start_date
+                ).toLocaleDateString("en-GB");
+                const endDate = project.end_date
+                  ? new Date(project.end_date).toLocaleDateString("en-GB")
+                  : "-";
+                const duration = calculateDuration(
+                  project.start_date,
+                  project.end_date
+                );
 
-          return (
-            <div key={project.id} className="col-lg-3 col-md-4 col-sm-6">
-              <div className="card shadow-sm border-0 h-100">
-                <div className="card-body">
-                  <h5 className="mb-3">{project.project_name}</h5>
-                  <ul className="list-unstyled small">
-                    <li className="mb-2">
-                      <i className="bi bi-calendar-event text-primary me-2"></i>
-                      <strong>Start:</strong> {startDate}
-                    </li>
-                    {endDate && (
-                      <li className="mb-2">
-                        <i className="bi bi-calendar-x text-danger me-2"></i>
-                        <strong>End:</strong> {endDate}
-                      </li>
-                    )}
-                    <li>
-                      <i className="bi bi-hourglass-split text-success me-2"></i>
-                      <strong>Duration:</strong> {duration}
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="card-footer bg-white border-0 d-flex justify-content-end align-items-center gap-2">
-                  <button
-                    className="btn btn-sm"
-                    onClick={() => openProjectModal("edit", project)}
-                  >
-                    <i className="bi bi-pencil"></i>
-                  </button>
-                  <button
-                    className="btn btn-sm"
-                    onClick={() => handleDeleteProject(project.id)}
-                  >
-                    <i className="bi bi-trash"></i>
-                  </button>
-                  <button
-                    className="btn btn-sm"
-                    onClick={() => {
-                      setCurrentModuleProject(project);
-                      setShowModuleModal(true);
-                    }}
-                  >
-                    <i className="bi bi-list-ul"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                return (
+                  <tr key={project.id}>
+                    <td>{index + 1}</td>
+                    <td>{project.project_name}</td>
+                    <td className="" style={{ maxWidth: "300px" }}>
+                      {project.description}
+                    </td>
+                    <td>{startDate}</td>
+                    <td>{endDate}</td>
+                    <td>{duration}</td>
+                    <td>{project.status}</td>
+                    <td>
+                      <div className="d-flex gap-2">
+                        <button
+                          className="btn btn-sm btn-outline-primary"
+                          onClick={() => openProjectModal("edit", project)}
+                        >
+                          <i className="bi bi-pencil"></i>
+                        </button>
+                        <button
+                          className="btn btn-sm btn-outline-danger"
+                          onClick={() => handleDeleteProject(project.id)}
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                        <button
+                          className="btn btn-sm btn-outline-secondary"
+                          onClick={() => {
+                            setCurrentModuleProject(project);
+                            setShowModuleModal(true);
+                          }}
+                        >
+                          <i className="bi bi-list-ul"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </FadeIn>
 
       {/* Project Modal */}
       <Modal show={showProjectModal} onHide={() => setShowProjectModal(false)}>
@@ -307,11 +356,11 @@ export default function Project() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {modules.length === 0 ? (
+          {currentModuleProject?.modules?.length === 0 ? (
             <p className="text-muted">No modules found for this project.</p>
           ) : (
             <ul className="list-group">
-              {modules.map((module) => (
+              {currentModuleProject?.modules?.map((module) => (
                 <li key={module.id} className="list-group-item">
                   <strong>{module.module_name}</strong>
                   <p className="mb-0">{module.description}</p>
