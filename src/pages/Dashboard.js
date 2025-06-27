@@ -1,10 +1,54 @@
-import { useEffect, useState } from "react";
+// src/components/Dashboard.js
+import { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./Dashboard.css";
-import { fetchTotalCount } from "../api/Auth";
+import "../assets/styles/Dashboard.css"; // Ensure this path is correct
+import { fetchTotalCount } from "../api/Auth"; // Assuming this API returns monthly counts
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import "react-calendar/dist/Calendar.css"; // Default react-calendar styles
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import { updateTaskStatus } from "../redux/taskSlice";
+
+gsap.registerPlugin(useGSAP);
+
+// FadeIn component for animation
+const FadeIn = ({ children, stagger = 0, y = 0, ref, className = "" }) => {
+  const el = useRef();
+  const animation = useRef();
+
+  useGSAP(
+    () => {
+      animation.current = gsap.from(el.current.children, {
+        opacity: 0,
+        stagger,
+        y,
+        ease: "power3.out", // Added ease for smoother animation
+      });
+    },
+    { scope: el }
+  ); // Added scope for GSAP context
+
+  useGSAP(() => {
+    // forward the animation instance
+    if (typeof ref === "function") {
+      ref(animation.current);
+    } else if (ref) {
+      ref.current = animation.current;
+    }
+  }, [ref]);
+
+  return (
+    <div ref={el} className={`row g-4 mb-4 ${className}`}>
+      {children}
+    </div>
+  );
+};
 
 export default function Dashboard() {
+  const animationRef = useRef();
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     pendingTasks: 0,
     inProgressTasks: 0,
@@ -12,171 +56,163 @@ export default function Dashboard() {
     targetHours: 0,
     completedHours: 0,
   });
+  const [runningTasks, setRunningTasks] = useState([]);
+  console.log("Running Tasks:", runningTasks);
 
-  const recentActivities = [
-    {
-      id: 1,
-      message: 'Task "Homepage Redesign" completed.',
-      time: "2 hours ago",
-      user: "Alex Johnson",
-      icon: "bi-check-circle-fill text-success",
-    },
-    {
-      id: 2,
-      message: 'Task "API Integration" status updated to In Progress.',
-      time: "5 hours ago",
-      user: "Maria Garcia",
-      icon: "bi-arrow-repeat text-primary",
-    },
-    {
-      id: 3,
-      message: 'New team member "Sarah Miller" added to Project Phoenix.',
-      time: "1 day ago",
-      user: "Admin",
-      icon: "bi-person-plus-fill text-warning",
-    },
-  ];
+  const tasks = useSelector((state) => state.tasks);
+  const selectedStatus = "Working"; // Assuming this is the status you want to filter by
+  useEffect(() => {
+    const filtered = tasks.filter((task) => task.status === selectedStatus);
+    setRunningTasks(filtered);
+  }, [selectedStatus, tasks]);
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadDashboardData = async () => {
       try {
-        const res = await fetchTotalCount();
+        // Fetch overall counts (assuming these are monthly from fetchTotalCount)
+        const countsRes = await fetchTotalCount();
         setData({
-          pendingTasks: res.pending || 0,
-          inProgressTasks: res.in_progress || 0,
-          completedTasks: res.completed || 0,
-          targetHours: res.target_hours || 0,
-          completedHours: res.worked_hours || 0,
+          pendingTasks: countsRes.pending || 0,
+          inProgressTasks: countsRes.in_progress || 0,
+          completedTasks: countsRes.completed || 0,
+          targetHours: countsRes.target_hours || 0,
+          completedHours: countsRes.worked_hours || 0,
         });
       } catch (err) {
         console.error("Error loading dashboard data:", err.message);
       }
     };
-    loadData();
-  }, []);
+    loadDashboardData();
+  }, []); // Empty dependency array means this runs once on mount
 
-  const attendanceProgress =
-    data.targetHours > 0 ? (data.completedHours / data.targetHours) * 100 : 0;
-  const clampedAttendanceProgress = Math.min(attendanceProgress, 100);
+  const handleStatusChange = (newStatus, selectedTaskId) => {
+    console.log("Changing status to:", newStatus);
+    console.log("Selected Task ID:", selectedTaskId);
+    if (runningTasks) {
+      dispatch(updateTaskStatus({ id: selectedTaskId, status: newStatus }));
+      setRunningTasks({ ...runningTasks, status: newStatus });
+    }
+  };
 
   return (
     <div className="mx-5 my-5">
       <h2 className="fw-bold mb-3">Dashboard Overview</h2>
-      <p className="text-muted mb-4">
-        Welcome back! Here's your progress and attendance.
-      </p>
+      <p className="text-muted mb-4">Welcome back! Here's your progress.</p>
 
-      <div className="row g-4 mb-4">
+      {/* TOP SECTION: Monthly Pending, In Progress, Completed Counts */}
+      <FadeIn stagger={0.1} y={-50} ref={animationRef}>
         <div className="col-lg-4 col-md-6">
-          <div className="card shadow-sm border-0">
+          <div className="card shadow-sm border-0 rounded-4">
             <div className="card-body d-flex align-items-center">
-              <div className="bg-warning-subtle text-warning p-3 rounded me-3">
+              <div className="bg-warning-subtle text-warning p-3 rounded-3 me-3">
                 <i className="bi bi-hourglass-split fs-3"></i>
               </div>
               <div>
                 <h6 className="mb-1 fw-semibold">Pending Tasks</h6>
-                <h4>{data.pendingTasks}</h4>
+                <h4 className="display-6 fw-bold mb-0">{data.pendingTasks}</h4>
               </div>
             </div>
           </div>
         </div>
 
         <div className="col-lg-4 col-md-6">
-          <div className="card shadow-sm border-0">
+          <div className="card shadow-sm border-0 rounded-4">
             <div className="card-body d-flex align-items-center">
-              <div className="bg-info-subtle text-info p-3 rounded me-3">
+              <div className="bg-info-subtle text-info p-3 rounded-3 me-3">
                 <i className="bi bi-arrow-repeat fs-3"></i>
               </div>
               <div>
-                <h6 className="mb-1 fw-semibold">In Progress</h6>
-                <h4>{data.inProgressTasks}</h4>
+                <h6 className="mb-1 fw-semibold">In Progress Tasks</h6>
+                <h4 className="display-6 fw-bold mb-0">
+                  {data.inProgressTasks}
+                </h4>
               </div>
             </div>
           </div>
         </div>
 
         <div className="col-lg-4 col-md-12">
-          <div className="card shadow-sm border-0">
+          <div className="card shadow-sm border-0 rounded-4">
             <div className="card-body d-flex align-items-center">
-              <div className="bg-success-subtle text-success p-3 rounded me-3">
+              <div className="bg-success-subtle text-success p-3 rounded-3 me-3">
                 <i className="bi bi-check-circle fs-3"></i>
               </div>
               <div>
                 <h6 className="mb-1 fw-semibold">Completed Tasks</h6>
-                <h4>{data.completedTasks}</h4>
+                <h4 className="display-6 fw-bold mb-0">
+                  {data.completedTasks}
+                </h4>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </FadeIn>
 
-      {/* Attendance Progress */}
-      <div className="row g-4 mb-4">
-        <div className="col-lg-6">
-          <div className="card shadow-sm border-0">
-            <div className="card-body">
-              <h6 className="fw-semibold mb-3">Attendance Progress</h6>
-              <div className="d-flex justify-content-between mb-1">
-                <span>Completed: {data.completedHours} hrs</span>
-                <span>Target: {data.targetHours} hrs</span>
+      {/* BOTTOM SECTION: Running Tasks & Calendar */}
+      <FadeIn stagger={0.1} y={1000} ref={animationRef}>
+        <div className="card shadow-sm border-0 rounded-4 h-100">
+          <div className="card-body">
+            <h5 className="fw-semibold mb-3">Running Tasks</h5>
+            {runningTasks.length > 0 ? (
+              <ul className="list-group list-group-flush">
+                {runningTasks.map((task) => (
+                  <li
+                    key={task.id}
+                    className="list-group-item d-flex justify-content-between align-items-center py-2 px-0"
+                  >
+                    <div>
+                      <h6 className="mb-0">{task.task_name}</h6>
+                      <small className="text-muted">
+                        Module: {task.module} | Type: {task.type}
+                      </small>
+                    </div>
+                    <div>
+                      <div className="d-flex gap-2">
+                        <span
+                          className={`badge rounded-pill bg-${
+                            task.status === "In Progress"
+                              ? "info"
+                              : task.status === "Pending"
+                              ? "warning"
+                              : "secondary"
+                          } text-uppercase`}
+                        >
+                          {task.status}
+                        </span>
+                      </div>
+                      <div className="mt-2 d-flex gap-2">
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            console.log("Stopping task:", task.id);
+                            handleStatusChange("Pending", task.id);
+                          }}
+                        >
+                          Stop
+                        </Button>
+                        <Button
+                          variant="success"
+                          onClick={() => {
+                            console.log("Completing task:", task.id);
+                            handleStatusChange("Completed", task.id);
+                          }}
+                        >
+                          Completed
+                        </Button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="text-center text-muted py-5">
+                <i className="bi bi-check-circle fs-3 d-block mb-2"></i>
+                No tasks currently in progress.
               </div>
-              <div className="progress" style={{ height: "20px" }}>
-                <div
-                  className="progress-bar bg-primary"
-                  style={{ width: `${clampedAttendanceProgress}%` }}
-                >
-                  {clampedAttendanceProgress.toFixed(1)}%
-                </div>
-              </div>
-              <small className="text-muted mt-2 d-block">
-                {attendanceProgress >= 100
-                  ? "Excellent! Target hours achieved."
-                  : `You have ${(
-                      data.targetHours - data.completedHours
-                    ).toFixed(1)} hrs remaining.`}
-              </small>
-            </div>
+            )}
           </div>
         </div>
-
-        <div className="col-lg-6">
-          <div className="card shadow-sm border-0 text-center">
-            <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <div className="text-primary mb-3">
-                <i className="bi bi-graph-up-arrow fs-1"></i>
-              </div>
-              <h5>Performance Insights</h5>
-              <p className="text-muted mb-3">
-                Unlock detailed analytics and reports by upgrading to our Pro
-                plan.
-              </p>
-              <button className="btn btn-primary btn-sm">Learn More</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Recent Activity */}
-      <div className="card shadow-sm border-0 mb-4">
-        <div className="card-body">
-          <h6 className="fw-semibold mb-3">Recent Activity</h6>
-          <ul className="list-unstyled">
-            {recentActivities.map((activity) => (
-              <li key={activity.id} className="mb-3 d-flex">
-                <div className="me-3">
-                  <i className={`bi ${activity.icon} fs-4`}></i>
-                </div>
-                <div>
-                  <div>{activity.message}</div>
-                  <small className="text-muted">
-                    {activity.time} by {activity.user}
-                  </small>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      </FadeIn>
     </div>
   );
 }

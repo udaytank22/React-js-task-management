@@ -1,0 +1,2217 @@
+[
+  {
+    "id": 1,
+    "project_name": "Gaming Application",
+    "description": "A application designed for the gaming sector, featuring user role management.",
+    "start_date": "2024-05-05",
+    "end_date": "2024-08-10",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 4,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 5,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "project_name": "Travel Application",
+    "description": "A application designed for the travel sector, featuring mobile compatibility.",
+    "start_date": "2025-07-24",
+    "end_date": "2025-11-11",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "project_name": "Healthcare Application",
+    "description": "A application designed for the healthcare sector, featuring mobile compatibility.",
+    "start_date": "2023-01-23",
+    "end_date": "2023-02-06",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "project_name": "Media Service",
+    "description": "A service designed for the media sector, featuring AI-driven recommendations.",
+    "start_date": "2024-06-01",
+    "end_date": "2024-08-16",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "project_name": "Food Delivery Application",
+    "description": "A application designed for the food delivery sector, featuring payment integration.",
+    "start_date": "2025-01-26",
+    "end_date": "2025-02-24",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 5,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "project_name": "Gaming Service",
+    "description": "A service designed for the gaming sector, featuring responsive design.",
+    "start_date": "2023-03-16",
+    "end_date": "2023-06-05",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 5,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "project_name": "Travel Dashboard",
+    "description": "A dashboard designed for the travel sector, featuring data visualization.",
+    "start_date": "2024-10-06",
+    "end_date": "2025-04-03",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 3,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "project_name": "Logistics Application",
+    "description": "A application designed for the logistics sector, featuring multi-language support.",
+    "start_date": "2025-06-14",
+    "end_date": "2025-07-20",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 4,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 5,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "project_name": "Media Portal",
+    "description": "A portal designed for the media sector, featuring responsive design.",
+    "start_date": "2023-06-28",
+    "end_date": "2023-12-07",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "project_name": "Food Delivery Service",
+    "description": "A service designed for the food delivery sector, featuring payment integration.",
+    "start_date": "2024-04-14",
+    "end_date": "2024-06-06",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "project_name": "Finance Dashboard",
+    "description": "A dashboard designed for the finance sector, featuring real-time analytics.",
+    "start_date": "2025-01-03",
+    "end_date": "2025-07-15",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 5,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "project_name": "E-Commerce Platform",
+    "description": "A platform designed for the e-commerce sector, featuring responsive design.",
+    "start_date": "2023-02-19",
+    "end_date": "2023-08-15",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "project_name": "Education Service",
+    "description": "A service designed for the education sector, featuring multi-language support.",
+    "start_date": "2024-11-05",
+    "end_date": "2025-03-15",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 4,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 5,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "project_name": "Gaming System",
+    "description": "A system designed for the gaming sector, featuring mobile compatibility.",
+    "start_date": "2025-11-22",
+    "end_date": "2026-03-26",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "project_name": "Real Estate Service",
+    "description": "A service designed for the real estate sector, featuring payment integration.",
+    "start_date": "2023-03-26",
+    "end_date": "2023-04-26",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "project_name": "Gaming Solution",
+    "description": "A solution designed for the gaming sector, featuring user role management.",
+    "start_date": "2024-12-25",
+    "end_date": "2025-01-09",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "project_name": "Travel Solution",
+    "description": "A solution designed for the travel sector, featuring real-time analytics.",
+    "start_date": "2025-10-14",
+    "end_date": "2026-03-13",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "project_name": "Healthcare Tool",
+    "description": "A tool designed for the healthcare sector, featuring responsive design.",
+    "start_date": "2023-12-19",
+    "end_date": "2024-02-07",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "project_name": "Media Application",
+    "description": "A application designed for the media sector, featuring mobile compatibility.",
+    "start_date": "2024-07-14",
+    "end_date": "2024-11-07",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "project_name": "Logistics System",
+    "description": "A system designed for the logistics sector, featuring responsive design.",
+    "start_date": "2025-10-06",
+    "end_date": "2026-01-27",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "project_name": "Finance Platform",
+    "description": "A platform designed for the finance sector, featuring payment integration.",
+    "start_date": "2023-04-01",
+    "end_date": "2023-10-27",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "project_name": "Logistics Solution",
+    "description": "A solution designed for the logistics sector, featuring real-time analytics.",
+    "start_date": "2024-11-01",
+    "end_date": "2025-02-22",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "project_name": "Healthcare Dashboard",
+    "description": "A dashboard designed for the healthcare sector, featuring AI-driven recommendations.",
+    "start_date": "2025-01-18",
+    "end_date": "2025-07-20",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "project_name": "Healthcare System",
+    "description": "A system designed for the healthcare sector, featuring AI-driven recommendations.",
+    "start_date": "2023-02-07",
+    "end_date": "2023-06-26",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "project_name": "E-Commerce Dashboard",
+    "description": "A dashboard designed for the e-commerce sector, featuring AI-driven recommendations.",
+    "start_date": "2024-09-04",
+    "end_date": "2025-01-01",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "project_name": "Gaming Platform",
+    "description": "A platform designed for the gaming sector, featuring responsive design.",
+    "start_date": "2025-02-18",
+    "end_date": "2025-04-24",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "project_name": "Finance System",
+    "description": "A system designed for the finance sector, featuring multi-language support.",
+    "start_date": "2023-03-26",
+    "end_date": "2023-04-23",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "project_name": "Food Delivery Solution",
+    "description": "A solution designed for the food delivery sector, featuring payment integration.",
+    "start_date": "2024-02-25",
+    "end_date": "2024-05-17",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "project_name": "Food Delivery Portal",
+    "description": "A portal designed for the food delivery sector, featuring payment integration.",
+    "start_date": "2025-05-18",
+    "end_date": "2025-10-15",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 5,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "project_name": "E-Commerce System",
+    "description": "A system designed for the e-commerce sector, featuring real-time analytics.",
+    "start_date": "2023-06-07",
+    "end_date": "2023-07-18",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "project_name": "Food Delivery Dashboard",
+    "description": "A dashboard designed for the food delivery sector, featuring secure authentication.",
+    "start_date": "2024-03-21",
+    "end_date": "2024-06-10",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "project_name": "Gaming Dashboard",
+    "description": "A dashboard designed for the gaming sector, featuring real-time analytics.",
+    "start_date": "2025-10-27",
+    "end_date": "2025-12-12",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "project_name": "Education Dashboard",
+    "description": "A dashboard designed for the education sector, featuring data visualization.",
+    "start_date": "2023-07-03",
+    "end_date": "2023-08-09",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "project_name": "Education Portal",
+    "description": "A portal designed for the education sector, featuring user role management.",
+    "start_date": "2024-01-08",
+    "end_date": "2024-07-21",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "project_name": "Media Dashboard",
+    "description": "A dashboard designed for the media sector, featuring multi-language support.",
+    "start_date": "2025-03-13",
+    "end_date": "2025-07-24",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "project_name": "Real Estate Solution",
+    "description": "A solution designed for the real estate sector, featuring user role management.",
+    "start_date": "2023-03-27",
+    "end_date": "2023-08-06",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 5,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "project_name": "Food Delivery Tool",
+    "description": "A tool designed for the food delivery sector, featuring multi-language support.",
+    "start_date": "2024-09-19",
+    "end_date": "2024-10-19",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "project_name": "Finance Application",
+    "description": "A application designed for the finance sector, featuring payment integration.",
+    "start_date": "2025-12-05",
+    "end_date": "2026-01-28",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 5,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "project_name": "Finance Service",
+    "description": "A service designed for the finance sector, featuring data visualization.",
+    "start_date": "2023-03-09",
+    "end_date": "2023-08-15",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "project_name": "Education Platform",
+    "description": "A platform designed for the education sector, featuring real-time analytics.",
+    "start_date": "2024-05-19",
+    "end_date": "2024-07-11",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 5,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "project_name": "Real Estate Platform",
+    "description": "A platform designed for the real estate sector, featuring AI-driven recommendations.",
+    "start_date": "2025-05-15",
+    "end_date": "2025-06-04",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "project_name": "Healthcare Solution",
+    "description": "A solution designed for the healthcare sector, featuring payment integration.",
+    "start_date": "2023-05-26",
+    "end_date": "2023-06-20",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "project_name": "Education System",
+    "description": "A system designed for the education sector, featuring real-time analytics.",
+    "start_date": "2024-05-12",
+    "end_date": "2024-07-21",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 5,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "project_name": "E-Commerce Service",
+    "description": "A service designed for the e-commerce sector, featuring responsive design.",
+    "start_date": "2025-05-26",
+    "end_date": "2025-06-12",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "project_name": "Travel Portal",
+    "description": "A portal designed for the travel sector, featuring AI-driven recommendations.",
+    "start_date": "2023-11-06",
+    "end_date": "2024-04-16",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 5,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "project_name": "Media Platform",
+    "description": "A platform designed for the media sector, featuring data visualization.",
+    "start_date": "2024-08-01",
+    "end_date": "2024-11-28",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "project_name": "Logistics Platform",
+    "description": "A platform designed for the logistics sector, featuring secure authentication.",
+    "start_date": "2025-06-15",
+    "end_date": "2025-12-12",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "project_name": "Education Tool",
+    "description": "A tool designed for the education sector, featuring data visualization.",
+    "start_date": "2023-04-01",
+    "end_date": "2023-08-11",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "project_name": "Real Estate System",
+    "description": "A system designed for the real estate sector, featuring secure authentication.",
+    "start_date": "2024-05-13",
+    "end_date": "2024-07-25",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "project_name": "Logistics Dashboard",
+    "description": "A dashboard designed for the logistics sector, featuring user role management.",
+    "start_date": "2025-11-26",
+    "end_date": "2026-01-05",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 4,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "project_name": "E-Commerce Portal",
+    "description": "A portal designed for the e-commerce sector, featuring payment integration.",
+    "start_date": "2023-06-24",
+    "end_date": "2023-10-10",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 5,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "project_name": "Education Application",
+    "description": "A application designed for the education sector, featuring responsive design.",
+    "start_date": "2024-06-22",
+    "end_date": "2024-12-10",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 4,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "project_name": "Finance Portal",
+    "description": "A portal designed for the finance sector, featuring payment integration.",
+    "start_date": "2025-07-23",
+    "end_date": "2025-09-11",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "project_name": "Logistics Tool",
+    "description": "A tool designed for the logistics sector, featuring data visualization.",
+    "start_date": "2023-12-16",
+    "end_date": "2024-01-03",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "project_name": "Food Delivery System",
+    "description": "A system designed for the food delivery sector, featuring user role management.",
+    "start_date": "2024-12-12",
+    "end_date": "2025-03-01",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "project_name": "Finance Solution",
+    "description": "A solution designed for the finance sector, featuring responsive design.",
+    "start_date": "2025-10-23",
+    "end_date": "2026-02-22",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "project_name": "Travel System",
+    "description": "A system designed for the travel sector, featuring responsive design.",
+    "start_date": "2023-04-26",
+    "end_date": "2023-09-11",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 4,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 5,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "project_name": "Travel Service",
+    "description": "A service designed for the travel sector, featuring user role management.",
+    "start_date": "2024-12-01",
+    "end_date": "2025-01-19",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "project_name": "E-Commerce Solution",
+    "description": "A solution designed for the e-commerce sector, featuring multi-language support.",
+    "start_date": "2025-12-06",
+    "end_date": "2026-03-11",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "project_name": "Education Solution",
+    "description": "A solution designed for the education sector, featuring secure authentication.",
+    "start_date": "2023-04-07",
+    "end_date": "2023-06-22",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 4,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 5,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "project_name": "Finance Tool",
+    "description": "A tool designed for the finance sector, featuring secure authentication.",
+    "start_date": "2024-11-03",
+    "end_date": "2024-12-25",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "project_name": "Real Estate Dashboard",
+    "description": "A dashboard designed for the real estate sector, featuring user role management.",
+    "start_date": "2025-03-14",
+    "end_date": "2025-09-13",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 3,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "project_name": "Real Estate Portal",
+    "description": "A portal designed for the real estate sector, featuring payment integration.",
+    "start_date": "2023-11-11",
+    "end_date": "2024-04-22",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "project_name": "Logistics Service",
+    "description": "A service designed for the logistics sector, featuring mobile compatibility.",
+    "start_date": "2024-04-21",
+    "end_date": "2024-07-16",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "project_name": "Real Estate Application",
+    "description": "A application designed for the real estate sector, featuring secure authentication.",
+    "start_date": "2025-05-11",
+    "end_date": "2025-10-19",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 3,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 5,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "project_name": "Travel Tool",
+    "description": "A tool designed for the travel sector, featuring user role management.",
+    "start_date": "2023-01-07",
+    "end_date": "2023-06-02",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "project_name": "Logistics Portal",
+    "description": "A portal designed for the logistics sector, featuring user role management.",
+    "start_date": "2024-12-04",
+    "end_date": "2025-04-08",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 3,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 4,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 5,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "project_name": "Media Tool",
+    "description": "A tool designed for the media sector, featuring real-time analytics.",
+    "start_date": "2025-10-28",
+    "end_date": "2026-03-06",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "project_name": "E-Commerce Tool",
+    "description": "A tool designed for the e-commerce sector, featuring mobile compatibility.",
+    "start_date": "2023-11-28",
+    "end_date": "2024-01-02",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "project_name": "Media Solution",
+    "description": "A solution designed for the media sector, featuring data visualization.",
+    "start_date": "2024-04-08",
+    "end_date": "2024-05-19",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 3,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 4,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "project_name": "Food Delivery Platform",
+    "description": "A platform designed for the food delivery sector, featuring responsive design.",
+    "start_date": "2025-02-17",
+    "end_date": "2025-03-12",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 3,
+        "module_name": "Customer Support",
+        "description": "Enables users to raise tickets and interact with support representatives."
+      },
+      {
+        "id": 4,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 5,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "project_name": "Healthcare Service",
+    "description": "A service designed for the healthcare sector, featuring responsive design.",
+    "start_date": "2023-03-07",
+    "end_date": "2023-04-01",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 2,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "project_name": "Travel Platform",
+    "description": "A platform designed for the travel sector, featuring payment integration.",
+    "start_date": "2024-10-03",
+    "end_date": "2025-03-16",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "project_name": "Healthcare Platform",
+    "description": "A platform designed for the healthcare sector, featuring secure authentication.",
+    "start_date": "2025-10-27",
+    "end_date": "2026-03-23",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 4,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "project_name": "Media System",
+    "description": "A system designed for the media sector, featuring AI-driven recommendations.",
+    "start_date": "2023-05-23",
+    "end_date": "2023-10-08",
+    "status": "In Progress",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "User Authentication",
+        "description": "Handles user registration, login, password reset, and two-factor authentication."
+      },
+      {
+        "id": 4,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 5,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "project_name": "E-Commerce Application",
+    "description": "A application designed for the e-commerce sector, featuring data visualization.",
+    "start_date": "2024-02-18",
+    "end_date": "2024-08-15",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 3,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "project_name": "Gaming Portal",
+    "description": "A portal designed for the gaming sector, featuring user role management.",
+    "start_date": "2025-05-24",
+    "end_date": "2025-11-19",
+    "status": "Planned",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Inventory Management",
+        "description": "Tracks product availability, stock levels, and inventory history."
+      },
+      {
+        "id": 2,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      },
+      {
+        "id": 3,
+        "module_name": "Product Management",
+        "description": "Allows admin to add, update, delete, and categorize products."
+      },
+      {
+        "id": 4,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      },
+      {
+        "id": 5,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "project_name": "Gaming Tool",
+    "description": "A tool designed for the gaming sector, featuring multi-language support.",
+    "start_date": "2023-09-09",
+    "end_date": "2024-02-03",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 2,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "project_name": "Healthcare Portal",
+    "description": "A portal designed for the healthcare sector, featuring AI-driven recommendations.",
+    "start_date": "2024-08-26",
+    "end_date": "2024-11-21",
+    "status": "On Hold",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Order Processing",
+        "description": "Manages order placement, tracking, and status updates."
+      },
+      {
+        "id": 3,
+        "module_name": "Analytics Dashboard",
+        "description": "Provides insights on sales, traffic, and customer behavior."
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "project_name": "Real Estate Tool",
+    "description": "A tool designed for the real estate sector, featuring data visualization.",
+    "start_date": "2025-10-16",
+    "end_date": "2026-01-15",
+    "status": "Completed",
+    "modules": [
+      {
+        "id": 1,
+        "module_name": "Review & Rating System",
+        "description": "Allows users to leave feedback and rate products."
+      },
+      {
+        "id": 2,
+        "module_name": "Payment Gateway Integration",
+        "description": "Integrates various payment options for secure transactions."
+      }
+    ]
+  }
+]

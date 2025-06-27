@@ -1,81 +1,188 @@
 import { useState } from "react";
 import {
+  FaUserCircle,
+  FaUsers,
+  FaBell,
+  FaHistory,
+  FaMapMarkerAlt,
+  FaCar,
+  FaUser,
   FaCogs,
-  FaRegQuestionCircle,
-  FaUserCog,
-  FaHome,
   FaCodepen,
   FaTasks,
+  FaUserCog,
 } from "react-icons/fa";
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
-import { logout } from "../utils/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
   };
 
   const menuItems = [
-    { icon: <FaHome />, label: "Home", path: "/dashboard" },
+    { icon: <FaUserCircle />, label: "Dashboard", path: "/dashboard" },
     { icon: <FaCodepen />, label: "project", path: "/project" },
     { icon: <FaTasks />, label: "Tasks", path: "/tasks" },
-    { icon: <FaUserCog />, label: "Profile", path: '/profile' },
-    { icon: <FaRegQuestionCircle />, label: "FAQ" },
-    { icon: <FaCogs />, label: "Settings" },
+    { icon: <FaUserCog />, label: "Profile", path: "/profile" },
   ];
 
   return (
     <div
-      className={`bg-dark text-white d-flex flex-column justify-content-between p-3`}
       style={{
         width: collapsed ? "80px" : "240px",
-        transition: "width 0.3s",
-        height: "100vh",
+        backgroundColor: "#0F0F0F",
+        color: "white",
+        transition:
+          "width 0.4s ease-in-out, border-radius 0.4s ease-in-out,  margin 0.4s ease-in-out",
+        borderRadius: collapsed ? "40px" : "0px",
+        padding: "20px 10px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: collapsed ? "center" : "flex-start",
+        justifyContent: "space-between",
+        overflow: "hidden",
+        margin: collapsed ? "20px" : "0",
       }}
     >
-      {/* Top Section */}
-      <div>
-        <div className="d-flex align-items-center justify-content-between mb-4">
-          {!collapsed && <h4 className="m-0">🧠 Brainwave</h4>}
-          <button
-            className="btn btn-sm btn-outline-light"
-            onClick={toggleSidebar}
+      {/* Top Section: Profile + Toggle */}
+      <div style={{ width: "100%" }}>
+        {/* Collapse/Expand Button + Profile */}
+        <div
+          style={{
+            cursor: "pointer",
+            alignSelf: collapsed ? "center" : "flex-end",
+            marginBottom: "30px",
+            transition: "all 0.3s",
+          }}
+        >
+          <div
+            className="d-flex align-items-center gap-3 mb-4"
+            style={{
+              transition: "all 0.4s ease",
+              opacity: 1,
+            }}
           >
-            {collapsed ? <BsChevronDoubleRight /> : <BsChevronDoubleLeft />}
-          </button>
+            <img
+              src="https://imgs.search.brave.com/xNdwmua1sddi8xogq2coQ0xFES263fs2TabIR5co4_E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tYXJr/ZXRwbGFjZS5jYW52/YS5jb20vRUFHTkto/SVB5Z0UvMi8wLzE2/MDB3L2NhbnZhLWJs/dWUtbWluaW1hbGlz/dC1jaXJjbGUtZnJh/bWVkLWluc3RhZ3Jh/bS1wcm9maWxlLXBp/Y3R1cmUteXdfUFRX/TnhkTmcuanBn"
+              alt="Profile"
+              className="rounded-circle"
+              style={{
+                width: "40px",
+                height: "40px",
+                transition: "all 0.4s ease",
+              }}
+            />
+            <div
+              style={{
+                opacity: collapsed ? 0 : 1,
+                width: collapsed ? 0 : "auto",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                transition: "opacity 0.4s ease, width 0.4s ease",
+              }}
+            >
+              <div className="fw-bold">George Davidson</div>
+            </div>
+          </div>
         </div>
 
-        <ul className="nav flex-column gap-2">
-          {menuItems.map((item, index) => (
-            <li key={index} className="nav-item">
-              <Link // Use Link instead of <a>
-                to={item.path} // Use the path property for navigation
-                className="nav-link d-flex align-items-center text-white"
+        {/* Navigation Items */}
+        <ul className="nav flex-column" style={{ width: "100%" }}>
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <li
+                key={index}
+                className="nav-item mb-3"
+                style={{
+                  backgroundColor: isActive ? "#D6C75E" : "transparent",
+                  borderRadius: "10px",
+                  padding: "10px",
+                  display: "flex",
+                  justifyContent: collapsed ? "center" : "flex-start",
+                  alignItems: "center",
+                  color: isActive ? "black" : "white",
+                  transition: "all 0.3s ease",
+                }}
               >
-                <span className="me-2 fs-5">{item.icon}</span>
-                {!collapsed && <span>{item.label}</span>}
-              </Link>
-            </li>
-          ))}
+                <Link
+                  to={item.path}
+                  className="d-flex align-items-center text-decoration-none"
+                  style={{
+                    color: isActive ? "black" : "white",
+                    gap: "15px",
+                    width: "100%",
+                  }}
+                >
+                  {item.icon}
+                  <span
+                    style={{
+                      opacity: collapsed ? 0 : 1,
+                      width: collapsed ? 0 : "auto",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      transition: "opacity 0.4s ease, width 0.4s ease",
+                    }}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
-      {/* Bottom Section */}
-      <div className="text-center mt-4">
-        <button
-          className="btn btn-outline-light btn-sm mb-2 w-100 d-flex align-items-center justify-content-center gap-2"
-          onClick={logout} // Define this function in your component
-        >
-          <i className="bi bi-box-arrow-right"></i>
-          {!collapsed && "Logout"}
-        </button>
-        <small className="text-white">
-          {!collapsed ? "© 2025 TaskFlow" : "©"}
-        </small>
+      {/* Footer */}
+      <div
+        style={{
+          width: "100%",
+          textAlign: collapsed ? "center" : "left",
+          marginTop: "auto",
+          padding: "10px 0",
+          transition: "all 0.4s",
+          cursor: "pointer",
+        }}
+        onClick={toggleSidebar}
+      >
+        {collapsed ? (
+          <BsChevronDoubleRight size={20} />
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              borderColor: "white",
+              borderWidth: "0.5px",
+              borderStyle: "groove",
+              padding: "5px",
+              borderRadius: "10px",
+              transition: "all 0.3s",
+            }}
+          >
+            <span style={{ marginRight: "10px" }}>Collapse</span>
+            <BsChevronDoubleLeft size={20} />
+          </div>
+        )}
       </div>
+
+      {/* {!collapsed && (
+        <div
+          style={{
+            fontSize: "0.8rem",
+            textAlign: "center",
+            width: "100%",
+            opacity: 1,
+            transition: "opacity 0.4s ease-in-out",
+          }}
+        >
+          Uday Tank © 2025
+        </div>
+      )} */}
     </div>
   );
 }

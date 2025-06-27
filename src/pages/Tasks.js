@@ -3,18 +3,28 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./TaskDashboard.css";
+import "../assets/styles/TaskDashboard.css";
 import { addTask, updateTaskStatus } from "../redux/taskSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  signInWithGoogle,
+  createGoogleCalendarEvent,
+  initGoogleClient,
+} from "../utils/googleAuth";
 
 const TaskDashboard = () => {
   const tasks = useSelector((state) => state.tasks);
+  const dispatch = useDispatch();
+
   const [selectedStatus, setSelectedStatus] = useState("Pending");
   const [filteredTasks, setFilteredTasks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 100;
+
   const [selectedTask, setSelectedTask] = useState(null);
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const dispatch = useDispatch();
 
   const [newTask, setNewTask] = useState({
     task_name: "",
@@ -25,9 +35,23 @@ const TaskDashboard = () => {
   });
 
   useEffect(() => {
-    const filtered = tasks.filter((task) => task.status === selectedStatus);
+    initGoogleClient();
+  }, []);
+
+  useEffect(() => {
+    const filtered = tasks.filter(
+      (task) =>
+        task.status === selectedStatus &&
+        task.task_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     setFilteredTasks(filtered);
-  }, [selectedStatus, tasks]);
+    setCurrentPage(1);
+  }, [selectedStatus, tasks, searchTerm]);
+
+  const paginatedTasks = filteredTasks.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewTask = (task) => {
     setSelectedTask(task);
@@ -38,7 +62,8 @@ const TaskDashboard = () => {
     setSelectedTask(null);
     setShowTaskModal(false);
   };
-  const handleAddTask = () => {
+
+  const handleAddTask = async () => {
     const newTaskEntry = { ...newTask, id: Date.now() };
     dispatch(addTask(newTaskEntry));
     setShowAddModal(false);
@@ -49,6 +74,15 @@ const TaskDashboard = () => {
       type: "Development",
       status: "Pending",
     });
+
+    // try {
+    //   const token = await signInWithGoogle();
+    //   await createGoogleCalendarEvent(token, newTaskEntry);
+    //   alert("Task also added to Google Calendar");
+    // } catch (err) {
+    //   console.error("Calendar error:", err);
+    //   alert("Task added locally, but failed to sync with Google Calendar");
+    // }
   };
 
   const handleStatusChange = (newStatus) => {
@@ -64,13 +98,14 @@ const TaskDashboard = () => {
         <h2 className="fw-bold">Task Management Dashboard</h2>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div className="mb-4 d-flex gap-2">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex gap-2">
           {["Pending", "Working", "Completed"].map((status) => (
             <button
               key={status}
-              className={`filter-button ${selectedStatus === status ? "active" : ""
-                }`}
+              className={`filter-button ${
+                selectedStatus === status ? "active" : ""
+              }`}
               onClick={() => setSelectedStatus(status)}
             >
               {status}
@@ -82,10 +117,19 @@ const TaskDashboard = () => {
         </Button>
       </div>
 
-      <div className="task-table-container p-3 rounded shadow-sm bg-white">
-        <table className="table table-borderless align-middle mb-0">
-          <thead>
-            <tr className="table-header">
+      <Form.Control
+        type="text"
+        placeholder="Search by task name..."
+        className="mb-3"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover align-middle table-striped">
+          <thead className="table-light">
+            <tr>
+              <th>#</th>
               <th>Task Name</th>
               <th>Project</th>
               <th>Module</th>
@@ -94,8 +138,9 @@ const TaskDashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredTasks.map((task) => (
+            {paginatedTasks.map((task, index) => (
               <tr key={task.id} className="task-row">
+                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td>{task.task_name}</td>
                 <td>{task.project}</td>
                 <td>{task.module}</td>
@@ -110,15 +155,40 @@ const TaskDashboard = () => {
                 </td>
               </tr>
             ))}
-            {filteredTasks.length === 0 && (
+            {paginatedTasks.length === 0 && (
               <tr>
-                <td colSpan="5" className="text-center">
+                <td colSpan="6" className="text-center text-muted">
                   No tasks found.
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="d-flex justify-content-between align-items-center my-3">
+        <span>
+          Showing {paginatedTasks.length} of {filteredTasks.length} tasks
+        </span>
+        <div className="d-flex gap-2 align-items-center">
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Prev
+          </Button>
+          <span>Page {currentPage}</span>
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            disabled={currentPage * itemsPerPage >= filteredTasks.length}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </Button>
+        </div>
       </div>
 
       {/* View Task Modal */}
@@ -144,6 +214,12 @@ const TaskDashboard = () => {
               <p>
                 <strong>Status:</strong> {selectedTask.status}
               </p>
+              <p>
+                <strong>Start Time:</strong> {selectedTask.start_time || "---"}
+              </p>
+              <p>
+                <strong>End Time:</strong> {selectedTask.end_time || "---"}
+              </p>
             </>
           )}
         </Modal.Body>
@@ -153,8 +229,8 @@ const TaskDashboard = () => {
               <Button
                 variant="primary"
                 onClick={() => {
-                  handleStatusChange("Working")
-                  handleCloseTaskModal()
+                  handleStatusChange("Working");
+                  handleCloseTaskModal();
                 }}
               >
                 Start
@@ -164,14 +240,13 @@ const TaskDashboard = () => {
               </Button>
             </>
           )}
-
           {selectedTask?.status === "Working" && (
             <>
               <Button
                 variant="danger"
                 onClick={() => {
-                  handleStatusChange("Pending")
-                  handleCloseTaskModal()
+                  handleStatusChange("Pending");
+                  handleCloseTaskModal();
                 }}
               >
                 Stop
@@ -179,19 +254,22 @@ const TaskDashboard = () => {
               <Button
                 variant="success"
                 onClick={() => {
-                  handleStatusChange("Complete")
-                  handleCloseTaskModal()
+                  handleStatusChange("Completed");
+                  handleCloseTaskModal();
                 }}
               >
-                Complete
+                Completed
               </Button>
               <Button variant="secondary" onClick={handleCloseTaskModal}>
                 Close
               </Button>
             </>
           )}
-
-          {selectedTask?.status === "Finished" && <>{/* No buttons */}</>}
+          {selectedTask?.status === "Completed" && (
+            <Button variant="secondary" onClick={handleCloseTaskModal}>
+              Close
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
 
@@ -212,7 +290,6 @@ const TaskDashboard = () => {
                 }
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Project</Form.Label>
               <Form.Control
@@ -223,7 +300,6 @@ const TaskDashboard = () => {
                 }
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Module</Form.Label>
               <Form.Control
@@ -234,7 +310,6 @@ const TaskDashboard = () => {
                 }
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Type</Form.Label>
               <Form.Select
@@ -250,7 +325,6 @@ const TaskDashboard = () => {
                 <option>Testing</option>
               </Form.Select>
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Status</Form.Label>
               <Form.Select
