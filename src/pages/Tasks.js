@@ -30,10 +30,6 @@ const TaskDashboard = () => {
   });
 
   useEffect(() => {
-    initGoogleClient();
-  }, []);
-
-  useEffect(() => {
     const filtered = tasks.filter(
       (task) =>
         task.status === selectedStatus &&
