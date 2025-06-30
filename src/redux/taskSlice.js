@@ -23,7 +23,6 @@ const extractModules = (projects) => {
 // Initial States
 const taskInitialState = taskData;
 const projectInitialState = projectData;
-const moduleInitialState = extractModules(projectData);
 // console.log("moduleInitialState",moduleInitialState);
 // Task slice
 const taskSlice = createSlice({
