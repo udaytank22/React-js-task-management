@@ -56,33 +56,19 @@ export default function Dashboard() {
     completedHours: 0,
   });
   const [runningTasks, setRunningTasks] = useState([]);
-  console.log("Running Tasks:", runningTasks);
 
   const tasks = useSelector((state) => state.tasks);
   const selectedStatus = "Working"; // Assuming this is the status you want to filter by
   useEffect(() => {
+    setData({
+      pendingTasks: tasks.filter((task) => task.status === "Pending").length,
+      inProgressTasks: tasks.filter((task) => task.status === "Working").length,
+      completedTasks: tasks.filter((task) => task.status === "Completed")
+        .length,
+    });
     const filtered = tasks.filter((task) => task.status === selectedStatus);
     setRunningTasks(filtered);
   }, [selectedStatus, tasks]);
-
-  useEffect(() => {
-    const loadDashboardData = async () => {
-      try {
-        // Fetch overall counts (assuming these are monthly from fetchTotalCount)
-        const countsRes = await fetchTotalCount();
-        setData({
-          pendingTasks: countsRes.pending || 0,
-          inProgressTasks: countsRes.in_progress || 0,
-          completedTasks: countsRes.completed || 0,
-          targetHours: countsRes.target_hours || 0,
-          completedHours: countsRes.worked_hours || 0,
-        });
-      } catch (err) {
-        console.error("Error loading dashboard data:", err.message);
-      }
-    };
-    loadDashboardData();
-  }, []); // Empty dependency array means this runs once on mount
 
   const handleStatusChange = (newStatus, selectedTaskId) => {
     console.log("Changing status to:", newStatus);
