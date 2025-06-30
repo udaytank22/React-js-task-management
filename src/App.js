@@ -8,7 +8,6 @@ import {
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./pages/ProtectedRoute";
-import Home from "./Home";
 import Sidebar from "./component/Sidebar";
 import Project from "./pages/Project";
 import TaskDashboard from "./pages/Tasks";
