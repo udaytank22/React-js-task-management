@@ -1,6 +1,9 @@
 import { getToken } from "../utils/auth";
 
-const baseUrl = `${process.env.REACT_APP_BASE_URL}authenticate-user`;
+REACT_APP_BASE_URL =
+  "https://projects.jatayutechnologies.com/jatayu-software/public/api/";
+
+const baseUrl = `${REACT_APP_BASE_URL}authenticate-user`;
 console.log("baseUrl", baseUrl);
 export async function loginUser({ username, password }) {
   const res = await fetch(baseUrl, {
@@ -19,7 +22,7 @@ export async function loginUser({ username, password }) {
   return data;
 }
 
-const userCount = `${process.env.REACT_APP_BASE_URL}work-log-count-by-status`;
+const userCount = `${REACT_APP_BASE_URL}work-log-count-by-status`;
 
 export async function fetchTotalCount() {
   const token = getToken();
@@ -41,7 +44,7 @@ export async function fetchTotalCount() {
   return data;
 }
 
-const performanceReport = `${process.env.REACT_APP_BASE_URL}get-staff-performance-report`;
+const performanceReport = `${REACT_APP_BASE_URL}get-staff-performance-report`;
 
 export async function fetchPerformanceReport() {
   const token = getToken();
@@ -69,7 +72,7 @@ export async function fetchPerformanceReport() {
   return data;
 }
 
-const projectList = `${process.env.REACT_APP_BASE_URL}alloted-projects-list`;
+const projectList = `${REACT_APP_BASE_URL}alloted-projects-list`;
 
 export async function fetchProjectList() {
   const token = getToken();
@@ -97,7 +100,7 @@ export async function fetchProjectList() {
   return data;
 }
 
-const projectModuleList = `${process.env.REACT_APP_BASE_URL}get-project-by-work-module-name`;
+const projectModuleList = `${REACT_APP_BASE_URL}get-project-by-work-module-name`;
 
 export async function fetchProjectModuleList({ projectId }) {
   const token = getToken();
