@@ -1,12 +1,12 @@
 import { useState } from "react";
+import { FaUserCircle, FaCodepen, FaTasks, FaUserCog } from "react-icons/fa";
 import {
-  FaUserCircle,
-  FaCodepen,
-  FaTasks,
-  FaUserCog,
-} from "react-icons/fa";
-import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
+  BsChevronDoubleLeft,
+  BsChevronDoubleRight,
+  BsPower,
+} from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
+import { logout } from "../utils/auth";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -131,36 +131,70 @@ export default function Sidebar() {
       </div>
 
       {/* Footer */}
-      <div
-        style={{
-          width: "100%",
-          textAlign: collapsed ? "center" : "left",
-          marginTop: "auto",
-          padding: "10px 0",
-          transition: "all 0.4s",
-          cursor: "pointer",
-        }}
-        onClick={toggleSidebar}
-      >
-        {collapsed ? (
-          <BsChevronDoubleRight size={20} />
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              borderColor: "white",
-              borderWidth: "0.5px",
-              borderStyle: "groove",
-              padding: "5px",
-              borderRadius: "10px",
-              transition: "all 0.3s",
-            }}
-          >
-            <span style={{ marginRight: "10px" }}>Collapse</span>
-            <BsChevronDoubleLeft size={20} />
-          </div>
-        )}
+      <div style={{ width: "100%" }}>
+        <div
+          style={{
+            width: "100%",
+            textAlign: collapsed ? "center" : "left",
+            marginTop: "auto",
+            padding: "10px 0",
+            transition: "all 0.4s",
+            cursor: "pointer",
+          }}
+          onClick={toggleSidebar}
+        >
+          {collapsed ? (
+            <BsChevronDoubleRight size={20} />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                borderColor: "white",
+                borderWidth: "0.5px",
+                borderStyle: "groove",
+                padding: "5px",
+                borderRadius: "10px",
+                transition: "all 0.3s",
+              }}
+            >
+              <span style={{ marginRight: "10px" }}>Collapse</span>
+              <BsChevronDoubleLeft size={20} />
+            </div>
+          )}
+        </div>
+        {/* logout */}
+        <div
+          style={{
+            width: "100%",
+            textAlign: collapsed ? "center" : "left",
+            marginTop: "auto",
+            padding: "10px 0",
+            transition: "all 0.4s",
+            cursor: "pointer",
+          }}
+          onClick={logout}
+        >
+          {collapsed ? (
+            <BsPower size={20} />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                borderColor: "white",
+                borderWidth: "0.5px",
+                borderStyle: "groove",
+                padding: "5px",
+                borderRadius: "10px",
+                transition: "all 0.3s",
+              }}
+            >
+              <span style={{ marginRight: "10px" }}>LogOut</span>
+              <BsPower size={20} />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* {!collapsed && (
