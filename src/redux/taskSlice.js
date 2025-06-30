@@ -3,23 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import projectData from "../data/projects.json";
 import taskData from "../data/tasks.json";
 
-const extractModules = (projects) => {
-  const modules = [];
-  const seen = new Set();
-  console.log("modules", modules);
-  projects.forEach((project) => {
-    project.modules.forEach((mod) => {
-      const key = `${mod.module_name}`;
-      if (!seen.has(key)) {
-        modules.push(mod);
-        seen.add(key);
-      }
-    });
-  });
-
-  return modules;
-};
-
 // Initial States
 const taskInitialState = taskData;
 const projectInitialState = projectData;
