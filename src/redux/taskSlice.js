@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import projectData from "../data/projects.json";
 import taskData from "../data/tasks.json";
 import users from "../data/user.json";
-import { setToken as saveTokenToStorage, removeToken } from "../utils/auth";
+import { setToken as saveTokenToStorage } from "../utils/auth";
 
 let staticUsers = [...users]; // mutable copy
 
