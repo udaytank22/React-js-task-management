@@ -6,7 +6,6 @@ import "../assets/styles/Dashboard.css"; // Ensure this path is correct
 import { fetchTotalCount } from "../api/Auth"; // Assuming this API returns monthly counts
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import "react-calendar/dist/Calendar.css"; // Default react-calendar styles
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { updateTaskStatus } from "../redux/taskSlice";
