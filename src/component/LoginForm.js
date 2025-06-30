@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../api/Auth";
+import { loginUser, registerUser } from "../redux/taskSlice";
+import { useDispatch } from "react-redux";
 import { setToken } from "../utils/auth";
 
 export default function LoginForm() {
@@ -9,18 +10,32 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-    setIsLoading(true);
     e.preventDefault();
+    setIsLoading(true);
+    setError("");
+
     try {
-      const token = await loginUser({ username: username, password });
-      console.log("Login successful, token:", token.data.api_token);
-      setIsLoading(false);
-      setToken(token.data.api_token);
+      const result = await dispatch(loginUser({ username, password })).unwrap();
+      console.log("Logged in as:", result);
+      setToken(result.api_token);
       navigate("/dashboard");
-    } catch (err) {
-      setError("Invalid username or password");
+    } catch (loginError) {
+      // User not found → try register
+      try {
+        const result = await dispatch(
+          registerUser({ username, password })
+        ).unwrap();
+        console.log("Registered and logged in:", result);
+        setToken(result.api_token);
+        navigate("/dashboard");
+      } catch (registerError) {
+        setError(registerError);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
