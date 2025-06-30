@@ -6,11 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/styles/TaskDashboard.css";
 import { addTask, updateTaskStatus } from "../redux/taskSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  signInWithGoogle,
-  createGoogleCalendarEvent,
-  initGoogleClient,
-} from "../utils/googleAuth";
 
 const TaskDashboard = () => {
   const tasks = useSelector((state) => state.tasks);
