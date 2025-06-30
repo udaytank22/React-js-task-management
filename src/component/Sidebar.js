@@ -1,13 +1,6 @@
 import { useState } from "react";
 import {
   FaUserCircle,
-  FaUsers,
-  FaBell,
-  FaHistory,
-  FaMapMarkerAlt,
-  FaCar,
-  FaUser,
-  FaCogs,
   FaCodepen,
   FaTasks,
   FaUserCog,
