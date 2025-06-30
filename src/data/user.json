@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Amit",
+    "username": "amit01",
+    "email": "amit01@example.com",
+    "mobileNo": "+919876543210",
+    "password": "12345678",
+    "role": "Admin",
+    "is_task_creater": true,
+    "staff_time_diff": "+05:30",
+    "api_token": "token_amit_123"
+  },
+  {
+    "id": 2,
+    "name": "Neha",
+    "username": "neha02",
+    "email": "neha02@example.com",
+    "mobileNo": "+918765432109",
+    "password": "12345678",
+    "role": "Manager",
+    "is_task_creater": false,
+    "staff_time_diff": "+05:30",
+    "api_token": "token_neha_456"
+  },
+  {
+    "id": 3,
+    "name": "Ravi",
+    "username": "ravi03",
+    "email": "ravi03@example.com",
+    "mobileNo": "+917654321098",
+    "password": "12345678",
+    "role": "Staff",
+    "is_task_creater": true,
+    "staff_time_diff": "+05:30",
+    "api_token": "token_ravi_789"
+  },
+  {
+    "id": 4,
+    "name": "Priya",
+    "username": "priya04",
+    "email": "priya04@example.com",
+    "mobileNo": "+916543210987",
+    "password": "12345678",
+    "role": "HR",
+    "is_task_creater": false,
+    "staff_time_diff": "+05:30",
+    "api_token": "token_priya_321"
+  },
+  {
+    "id": 5,
+    "name": "Vikram",
+    "username": "vikram05",
+    "email": "vikram05@example.com",
+    "mobileNo": "+915432109876",
+    "password": "12345678",
+    "role": "Supervisor",
+    "is_task_creater": true,
+    "staff_time_diff": "+05:30",
+    "api_token": "token_vikram_654"
+  }
+]
