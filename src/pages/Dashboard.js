@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../assets/styles/Dashboard.css"; // Ensure this path is correct
-import { fetchTotalCount } from "../api/Auth"; // Assuming this API returns monthly counts
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useDispatch, useSelector } from "react-redux";
