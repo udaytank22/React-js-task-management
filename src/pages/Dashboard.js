@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { updateTaskStatus } from "../redux/taskSlice";
+import { FadeInWords } from "../component/Animations";
 
 gsap.registerPlugin(useGSAP);
 
@@ -80,8 +81,10 @@ export default function Dashboard() {
 
   return (
     <div className="mx-5 my-5">
-      <h2 className="fw-bold mb-3">Dashboard Overview</h2>
-      <p className="text-muted mb-4">Welcome back! Here's your progress.</p>
+      <FadeInWords animationRef={animationRef} x={-150} stagger={0.1}>
+        <h2 className="fw-bold mb-3">Dashboard Overview</h2>
+        <p className="text-muted mb-4">Welcome back! Here's your progress.</p>
+      </FadeInWords>
 
       {/* TOP SECTION: Monthly Pending, In Progress, Completed Counts */}
       <FadeIn stagger={0.1} y={-50} ref={animationRef}>
@@ -168,20 +171,18 @@ export default function Dashboard() {
                         <Button
                           variant="danger"
                           onClick={() => {
-                            console.log("Stopping task:", task.id);
                             handleStatusChange("Pending", task.id);
                           }}
                         >
-                          Stop
+                          <i className="bi bi-x-circle"></i>
                         </Button>
                         <Button
                           variant="success"
                           onClick={() => {
-                            console.log("Completing task:", task.id);
                             handleStatusChange("Completed", task.id);
                           }}
                         >
-                          Completed
+                          <i className="bi bi-check-circle"></i>
                         </Button>
                       </div>
                     </div>

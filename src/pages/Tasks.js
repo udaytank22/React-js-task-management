@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,10 +6,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/styles/TaskDashboard.css";
 import { addTask, updateTaskStatus } from "../redux/taskSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { FadeIn, FadeInWords } from "../component/Animations";
+import { exportToExcel } from "../component/FileExporter";
 
 const TaskDashboard = () => {
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
+  const animationRef = useRef();
 
   const [selectedStatus, setSelectedStatus] = useState("Pending");
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -86,11 +89,48 @@ const TaskDashboard = () => {
   return (
     <div className="mx-5 my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="fw-bold">Task Management Dashboard</h2>
+        <FadeInWords x={-150} stagger={0.1} ref={animationRef} className="">
+          <h2 className="fw-bold">Task Management Dashboard</h2>
+          <p className="text-muted">
+            All Tasks are listed here. You can add or edit tasks.
+          </p>
+        </FadeInWords>
+      </div>
+
+      <div className="d-flex justify-content-between align-items-center">
+        <FadeInWords
+          x={-150}
+          stagger={0.1}
+          ref={animationRef}
+          className="d-flex justify-content-between align-items-center"
+        >
+          <Form.Control
+            type="text"
+            placeholder="Search by task name..."
+            className="mb-3"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </FadeInWords>
+        <FadeInWords
+          x={150}
+          stagger={0.1}
+          ref={animationRef}
+          className="d-flex justify-content-between align-items-center"
+        >
+          <Button variant="primary" onClick={() => setShowAddModal(true)}>
+            <i className="bi bi-plus-circle me-2"></i>Add Task
+          </Button>
+        </FadeInWords>
       </div>
 
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <div className="d-flex gap-2">
+        <FadeInWords
+          x={-150}
+          stagger={0.1}
+          ref={animationRef}
+          className="d-flex gap-2"
+        >
           {["Pending", "Working", "Completed"].map((status) => (
             <button
               key={status}
@@ -102,21 +142,23 @@ const TaskDashboard = () => {
               {status}
             </button>
           ))}
-        </div>
-        <Button variant="primary" onClick={() => setShowAddModal(true)}>
-          <i className="bi bi-plus-circle me-2"></i>Add Task
-        </Button>
+        </FadeInWords>
+        <FadeInWords
+          x={150}
+          stagger={0.1}
+          ref={animationRef}
+          className="d-flex justify-content-between align-items-center"
+        >
+          <Button
+            variant="primary"
+            onClick={() => exportToExcel({ data: tasks, fileName: "tasks" })}
+          >
+            <i className="bi bi-arrow-down-circle me-2"></i>Export Excel
+          </Button>
+        </FadeInWords>
       </div>
 
-      <Form.Control
-        type="text"
-        placeholder="Search by task name..."
-        className="mb-3"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      <div className="table-responsive">
+      <FadeIn stagger={0.1} y={1000} ref={animationRef}>
         <table className="table table-bordered table-hover align-middle table-striped">
           <thead className="table-light">
             <tr>
@@ -155,7 +197,7 @@ const TaskDashboard = () => {
             )}
           </tbody>
         </table>
-      </div>
+      </FadeIn>
 
       <div className="d-flex justify-content-between align-items-center my-3">
         <span>
