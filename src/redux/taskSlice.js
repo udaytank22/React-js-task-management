@@ -105,7 +105,7 @@ const projectSlice = createSlice({
       state.push(action.payload);
     },
     updateProject: (state, action) => {
-      const { id, project_name, description, start_date, end_date } =
+      const { id, project_name, description, start_date, end_date, status } =
         action.payload;
       const project = state.find((m) => m.id === id);
       if (project) {
@@ -113,6 +113,7 @@ const projectSlice = createSlice({
         project.description = description;
         project.start_date = start_date;
         project.end_date = end_date;
+        project.status = status;
       }
     },
 
