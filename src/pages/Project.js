@@ -11,40 +11,8 @@ import {
   deleteProject,
   updateProject,
 } from "../redux/taskSlice";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-
-const FadeIn = ({ children, stagger = 0, y = 0, ref, className = "" }) => {
-  const el = useRef();
-  const animation = useRef();
-
-  useGSAP(
-    () => {
-      animation.current = gsap.from(el.current.children, {
-        opacity: 0,
-        stagger,
-        y,
-        ease: "power3.out", // Added ease for smoother animation
-      });
-    },
-    { scope: el }
-  ); // Added scope for GSAP context
-
-  useGSAP(() => {
-    // forward the animation instance
-    if (typeof ref === "function") {
-      ref(animation.current);
-    } else if (ref) {
-      ref.current = animation.current;
-    }
-  }, [ref]);
-
-  return (
-    <div ref={el} className={`table-responsive`}>
-      {children}
-    </div>
-  );
-};
+import { FadeIn, FadeInWords } from "../component/Animations";
+import { exportToExcel } from "../component/FileExporter";
 
 export default function Project() {
   const dispatch = useDispatch();
@@ -165,34 +133,56 @@ export default function Project() {
   return (
     <div className="mx-5 my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
+        <FadeInWords x={-150} stagger={0.1} ref={animationRef}>
           <h2 className="fw-bold">Projects</h2>
           <p className="text-muted">
             All Projects are listed here. You can add, edit, or delete projects.
           </p>
-        </div>
+        </FadeInWords>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div className="mb-4 position-relative">
-          <input
-            type="text"
-            className="form-control ps-5"
-            placeholder="Search projects..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <i
-            className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
-            style={{ fontSize: "1rem" }}
-          ></i>
+      <div className="d-flex justify-content-between align-items-center mb-2">
+        <div className="mb-2 position-relative">
+          <FadeInWords
+            x={-150}
+            stagger={0.1}
+            ref={animationRef}
+            className="d-flex justify-content-between align-items-center mb-2"
+          >
+            <input
+              type="text"
+              className="form-control ps-5"
+              placeholder="Search projects..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <i
+              className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
+              style={{ fontSize: "1rem" }}
+            ></i>
+          </FadeInWords>
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => openProjectModal("add")}
+        <FadeInWords
+          x={150}
+          stagger={0.3}
+          ref={animationRef}
+          className="d-flex justify-content-between align-items-center mb-2 gap-2"
         >
-          <i className="bi bi-plus-circle me-2"></i> Add Project
-        </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => openProjectModal("add")}
+          >
+            <i className="bi bi-plus-circle me-2"></i> Add Project
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              exportToExcel({ data: filteredProjects, fileName: "projects" })
+            }
+          >
+            <i className="bi bi-arrow-down-circle me-2"></i> Export Excel
+          </button>
+        </FadeInWords>
       </div>
 
       <FadeIn stagger={0.1} y={1000} ref={animationRef}>

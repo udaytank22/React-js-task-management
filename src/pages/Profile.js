@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { FadeIn, FadeInBottom, FadeInWords } from "../component/Animations";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ProfilePage = () => {
+  const animationRef = useRef();
   const [activeTab, setActiveTab] = useState("Attendance");
 
   const presentDays = 20;
@@ -95,7 +99,7 @@ const ProfilePage = () => {
   };
 
   const renderAttendance = () => (
-    <>
+    <FadeInBottom stagger={0.1} y={1000} ref={animationRef}>
       <h6 className="mb-3">Attendance Tracker</h6>
       <div className="row text-center mb-4">
         <div className="col-md-4">
@@ -155,10 +159,10 @@ const ProfilePage = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </FadeInBottom>
   );
   const renderLeaveManagement = () => (
-    <>
+    <FadeInBottom stagger={0.1} y={1000} ref={animationRef}>
       <div className="d-flex justify-content-between align-items-center">
         <h6>Leave Management</h6>
         <div className="mb-4">
@@ -221,27 +225,34 @@ const ProfilePage = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </FadeInBottom>
   );
 
   const renderPerformance = () => (
-    <div className="row mt-4">
-      <div className="col-md-6 text-center">
-        <h6>Attendance Distribution</h6>
-        <Pie data={attendanceChart} />
+    <FadeInBottom stagger={0.1} y={1000} ref={animationRef}>
+      <div className="row mt-4">
+        <div className="col-md-6 text-center">
+          <h6>Attendance Distribution</h6>
+          <Pie data={attendanceChart} />
+        </div>
+        <div className="col-md-6 text-center">
+          <h6>Leave Usage</h6>
+          <Pie data={leaveChart} />
+        </div>
       </div>
-      <div className="col-md-6 text-center">
-        <h6>Leave Usage</h6>
-        <Pie data={leaveChart} />
-      </div>
-    </div>
+    </FadeInBottom>
   );
 
   return (
     <div className="container my-5">
       {/* Profile Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <div className="d-flex align-items-center gap-3">
+        <FadeInWords
+          x={-150}
+          stagger={0.1}
+          ref={animationRef}
+          className="d-flex align-items-center gap-3"
+        >
           <img
             src="https://imgs.search.brave.com/xNdwmua1sddi8xogq2coQ0xFES263fs2TabIR5co4_E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tYXJr/ZXRwbGFjZS5jYW52/YS5jb20vRUFHTkto/SVB5Z0UvMi8wLzE2/MDB3L2NhbnZhLWJs/dWUtbWluaW1hbGlz/dC1jaXJjbGUtZnJh/bWVkLWluc3RhZ3Jh/bS1wcm9maWxlLXBp/Y3R1cmUteXdfUFRX/TnhkTmcuanBn"
             alt="Profile"
@@ -255,24 +266,38 @@ const ProfilePage = () => {
               Employee ID: 12345 | Marketing Department
             </small>
           </div>
-        </div>
-        <button className="btn btn-outline-secondary">Edit Profile</button>
+        </FadeInWords>
+        <FadeInWords
+          x={150}
+          stagger={0.1}
+          ref={animationRef}
+          className="d-flex align-items-center gap-3"
+        >
+          <button className="btn btn-outline-secondary">Edit Profile</button>
+        </FadeInWords>
       </div>
 
       {/* Tabs */}
       <ul className="nav nav-tabs mb-4">
-        {["Attendance", "Leave Management", "Performance"].map((tab) => (
-          <li className="nav-item" key={tab}>
-            <button
-              className={`nav-link ${
-                activeTab === tab ? "active fw-bold" : ""
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          </li>
-        ))}
+        <FadeIn
+          stagger={0.1}
+          y={1000}
+          ref={animationRef}
+          className={`nav nav-tabs mb-4`}
+        >
+          {["Attendance", "Leave Management", "Performance"].map((tab) => (
+            <li className="nav-item" key={tab}>
+              <button
+                className={`nav-link ${
+                  activeTab === tab ? "active fw-bold" : ""
+                }`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            </li>
+          ))}
+        </FadeIn>
       </ul>
 
       {/* Tab Content */}
