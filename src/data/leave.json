@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2024-07-15 to 2024-07-17",
+    "type": "Vacation",
+    "reason": "Family trip",
+    "status": "Approved"
+  },
+  {
+    "date": "2024-06-20",
+    "type": "Sick Leave",
+    "reason": "Flu",
+    "status": "Approved"
+  },
+  {
+    "date": "2024-05-10",
+    "type": "Personal Leave",
+    "reason": "Appointment",
+    "status": "Rejected"
+  }
+]

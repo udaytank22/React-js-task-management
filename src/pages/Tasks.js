@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -68,15 +68,6 @@ const TaskDashboard = () => {
       type: "Development",
       status: "Pending",
     });
-
-    // try {
-    //   const token = await signInWithGoogle();
-    //   await createGoogleCalendarEvent(token, newTaskEntry);
-    //   alert("Task also added to Google Calendar");
-    // } catch (err) {
-    //   console.error("Calendar error:", err);
-    //   alert("Task added locally, but failed to sync with Google Calendar");
-    // }
   };
 
   const handleStatusChange = (newStatus) => {
