@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "date": "2025-06-10",
+    "day": "Monday",
+    "punchIn": "09:10",
+    "punchOut": "18:05",
+    "status": "Full Day"
+  },
+  {
+    "id": 2,
+    "date": "2025-06-11",
+    "day": "Tuesday",
+    "punchIn": "10:15",
+    "punchOut": "14:30",
+    "status": "Half Day"
+  },
+  {
+    "id": 3,
+    "date": "2025-06-12",
+    "day": "Wednesday",
+    "punchIn": "09:00",
+    "punchOut": "18:00",
+    "status": "Full Day"
+  },
+  {
+    "id": 4,
+    "date": "2025-06-13",
+    "day": "Thursday",
+    "punchIn": "Absent",
+    "punchOut": "-",
+    "status": "Absent"
+  },
+  {
+    "id": 5,
+    "date": "2025-06-14",
+    "day": "Friday",
+    "punchIn": "08:55",
+    "punchOut": "17:45",
+    "status": "Full Day"
+  }
+]

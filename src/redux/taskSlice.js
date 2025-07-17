@@ -3,6 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import projectData from "../data/projects.json";
 import taskData from "../data/tasks.json";
 import users from "../data/user.json";
+import attandanceData from "../data/attandance.json";
+import profileData from "../data/profile.json";
+import leaveData from "../data/leave.json";
 import { setToken as saveTokenToStorage } from "../utils/auth";
 
 let staticUsers = [...users]; // mutable copy
@@ -54,7 +57,6 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.token = null;
-      // removeToken();
     },
   },
   extraReducers: (builder) => {
@@ -76,8 +78,9 @@ const authSlice = createSlice({
 
 // Initial States
 const taskInitialState = taskData;
+
 const projectInitialState = projectData;
-// console.log("moduleInitialState",moduleInitialState);
+
 // Task slice
 const taskSlice = createSlice({
   name: "tasks",
@@ -134,15 +137,68 @@ const projectSlice = createSlice({
   },
 });
 
+// attandance data
+const attendanceInitialState = attandanceData;
+const attendanceSlice = createSlice({
+  name: "attendance",
+  initialState: attendanceInitialState,
+  reducers: {
+    addAttendance: (state, action) => {
+      const index = state.findIndex(
+        (entry) => entry.date === action.payload.date
+      );
+
+      if (index !== -1) {
+        // Update existing entry
+        state[index] = {
+          ...state[index],
+          ...action.payload,
+        };
+      } else {
+        // Add new entry
+        state.push(action.payload);
+      }
+    },
+  },
+});
+
+// leave data
+const leavreInitialState = leaveData;
+const leaveSlice = createSlice({
+  name: "leave",
+  initialState: leavreInitialState,
+  reducers: {
+    addLeave: (state, action) => {
+      state.push(action.payload);
+    },
+  },
+});
+
+// profile data
+const profileInitialState = profileData;
+const profileSlice = createSlice({
+  name: "profile",
+  initialState: profileInitialState,
+  reducers: {
+    updateData: (state, action) => {
+      state.push(action.payload);
+    },
+  },
+});
+
 // Export actions
 export const { addTask, updateTaskStatus } = taskSlice.actions;
-// export const { addModule, updateModule } = moduleSlice.actions;
+export const { addAttendance } = attendanceSlice.actions;
+export const { addLeave } = leaveSlice.actions;
+export const { updateData } = profileSlice.actions;
 export const { addProject, updateProject, deleteProject, addModuleToProject } =
   projectSlice.actions;
 export const { logout } = authSlice.actions;
 
 // Export reducers
 export const taskReducer = taskSlice.reducer;
-// export const moduleReducer = moduleSlice.reducer;
 export const projectReducer = projectSlice.reducer;
 export const authReducer = authSlice.reducer;
+export const attendanceReducer = attendanceSlice.reducer;
+export const profileReducer = profileSlice.reducer;
+export const leaveReducer = leaveSlice.reducer;

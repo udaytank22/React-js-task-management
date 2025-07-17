@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "name": "John Doe",
+  "employeeId": "EMP12345",
+  "designation": "Software Engineer",
+  "mobile": "+1-234-567-8900",
+  "address": "123 Main St, Springfield, IL",
+  "dob": "1990-01-01",
+  "profileImage": "https://imgs.search.brave.com/xNdwmua1sddi8xogq2coQ0xFES263fs2TabIR5co4_E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tYXJr/ZXRwbGFjZS5jYW52/YS5jb20vRUFHTkto/SVB5Z0UvMi8wLzE2/MDB3L2NhbnZhLWJs/dWUtbWluaW1hbGlz/dC1jaXJjbGUtZnJh/bWVkLWluc3RhZ3Jh/bS1wcm9maWxlLXBp/Y3R1cmUteXdfUFRX/TnhkTmcuanBn"
+}

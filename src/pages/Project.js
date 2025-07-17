@@ -18,9 +18,7 @@ export default function Project() {
   const dispatch = useDispatch();
   const animationRef = useRef();
 
-  // const modules = useSelector((state) => state.modules ?? []);
   const projects = useSelector((state) => state.projects ?? []);
-  console.log("projects", projects);
   const [search, setSearch] = useState("");
 
   const [showProjectModal, setShowProjectModal] = useState(false);

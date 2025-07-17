@@ -26,7 +26,7 @@ export default function Sidebar() {
   return (
     <div
       style={{
-        width: collapsed ? "80px" : "240px",
+        width: collapsed ? "60px" : "240px",
         backgroundColor: "#0F0F0F",
         color: "white",
         transition:
@@ -93,32 +93,51 @@ export default function Sidebar() {
                 className="nav-item mb-3"
                 style={{
                   backgroundColor: isActive ? "#D6C75E" : "transparent",
-                  borderRadius: "10px",
-                  padding: "10px",
+                  borderRadius: collapsed ? "50%" : "10px",
+                  width: collapsed ? "45px" : "100%",
+                  height: "45px",
                   display: "flex",
-                  justifyContent: collapsed ? "center" : "flex-start",
                   alignItems: "center",
-                  color: isActive ? "black" : "white",
-                  transition: "all 0.3s ease",
+                  justifyContent: "center",
+                  transition: "all 0.8s ease",
                 }}
               >
                 <Link
                   to={item.path}
-                  className="d-flex align-items-center text-decoration-none"
+                  className="text-decoration-none"
                   style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: collapsed ? "center" : "flex-start",
+                    gap: collapsed ? "0px" : "15px",
                     color: isActive ? "black" : "white",
-                    gap: "15px",
                     width: "100%",
+                    height: "100%",
+                    padding: collapsed ? "0" : "0 15px",
+                    transition: "all 0.3s ease",
+                    borderRadius: "inherit",
                   }}
                 >
-                  {item.icon}
+                  {/* Icon */}
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+
+                  {/* Label: Hidden when collapsed */}
                   <span
                     style={{
                       opacity: collapsed ? 0 : 1,
                       width: collapsed ? 0 : "auto",
-                      whiteSpace: "nowrap",
                       overflow: "hidden",
-                      transition: "opacity 0.4s ease, width 0.4s ease",
+                      whiteSpace: "nowrap",
+                      transition: "opacity 0.10s ease, width 0.3s ease",
                     }}
                   >
                     {item.label}
@@ -155,7 +174,7 @@ export default function Sidebar() {
                 borderStyle: "groove",
                 padding: "5px",
                 borderRadius: "10px",
-                transition: "all 0.3s",
+                transition: "all 0.10s",
               }}
             >
               <span style={{ marginRight: "10px" }}>Collapse</span>
@@ -170,7 +189,7 @@ export default function Sidebar() {
             textAlign: collapsed ? "center" : "left",
             marginTop: "auto",
             padding: "10px 0",
-            transition: "all 0.4s",
+            transition: "all 0.10s",
             cursor: "pointer",
           }}
           onClick={logout}
@@ -195,21 +214,20 @@ export default function Sidebar() {
             </div>
           )}
         </div>
+        {!collapsed && (
+          <div
+            style={{
+              fontSize: "0.8rem",
+              textAlign: "center",
+              width: "100%",
+              opacity: 1,
+              transition: "opacity 0.4s ease-in-out",
+            }}
+          >
+            Uday Tank © 2025
+          </div>
+        )}
       </div>
-
-      {/* {!collapsed && (
-        <div
-          style={{
-            fontSize: "0.8rem",
-            textAlign: "center",
-            width: "100%",
-            opacity: 1,
-            transition: "opacity 0.4s ease-in-out",
-          }}
-        >
-          Uday Tank © 2025
-        </div>
-      )} */}
     </div>
   );
 }
