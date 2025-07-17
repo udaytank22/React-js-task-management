@@ -161,6 +161,7 @@ const ProfilePage = () => {
       setLeave({
         date: "",
         reason: "",
+        status: "Pending",
       });
     }
   };
