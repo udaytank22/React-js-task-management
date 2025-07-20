@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { addAttendance, addLeave } from "../redux/taskSlice";
+import { addAttendance, addLeave, updateData } from "../redux/taskSlice";
 import moment from "moment";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -46,6 +46,13 @@ const ProfilePage = () => {
     status: "Pending",
   });
 
+  const [profileData, setProfileData] = useState({
+    name: userProfile.name,
+    dob: userProfile.dob,
+    mobile: userProfile.mobile,
+    address: userProfile.address
+  })
+
   const handleProjectInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -74,7 +81,7 @@ const ProfilePage = () => {
           const start =
             name === "firstDate"
               ? value
-              : updatedData.firstDate || prev.firstDate;
+              : moment(updatedData.firstDate).format('DD-MM-YYYY') || prev.firstDate;
           const end =
             name === "endDate" ? value : updatedData.endDate || prev.endDate;
 
@@ -86,6 +93,12 @@ const ProfilePage = () => {
           updatedData.type = value;
         }
 
+        return updatedData;
+      });
+    } else if (activeTab === "Profile Data") {
+      setProfileData((prev) => {
+        let updatedData = { ...prev, [name]: value };
+        console.log('updatedData', updatedData)
         return updatedData;
       });
     }
@@ -133,8 +146,8 @@ const ProfilePage = () => {
           hoursWorked >= 8
             ? "Full Day"
             : hoursWorked >= 4
-            ? "Half Day"
-            : "Half Day";
+              ? "Half Day"
+              : "Half Day";
 
         newTaskEntry = {
           ...existingEntry,
@@ -163,6 +176,9 @@ const ProfilePage = () => {
         reason: "",
         status: "Pending",
       });
+    } else if (activeTab === "Profile Data") {
+      dispatch(updateData(profileData));
+      setShowAddModal(false);
     }
   };
 
@@ -244,18 +260,17 @@ const ProfilePage = () => {
                   {entry.punchOut === ""
                     ? "-"
                     : entry.punchOut === "-"
-                    ? "Absent"
-                    : moment(entry.punchOut, "HH:mm").format("hh:mm A")}
+                      ? "Absent"
+                      : moment(entry.punchOut, "HH:mm").format("hh:mm A")}
                 </td>
                 <td>
                   <span
-                    className={`badge ${
-                      entry.status === "Full Day"
-                        ? "bg-success rounded-pill"
-                        : entry.status === "Half Day"
+                    className={`badge ${entry.status === "Full Day"
+                      ? "bg-success rounded-pill"
+                      : entry.status === "Half Day"
                         ? "bg-warning text-dark rounded-pill"
                         : "bg-danger rounded-pill"
-                    }`}
+                      }`}
                   >
                     {entry.status}
                   </span>
@@ -299,7 +314,7 @@ const ProfilePage = () => {
           <div className="col-md-6 mb-2">
             <strong>Date of Birth:</strong>{" "}
             <span className="text-muted">
-              {new Date(userProfile.dob).toLocaleDateString()}
+              {moment(userProfile.dob).format("DD-MMM-YYYY")}
             </span>
           </div>
           <div className="col-md-6 mb-2">
@@ -362,13 +377,12 @@ const ProfilePage = () => {
                 <td>{leave.reason}</td>
                 <td>
                   <span
-                    className={`badge ${
-                      leave.status === "Approved"
-                        ? "bg-success rounded-pill"
-                        : leave.status === "Rejected"
+                    className={`badge ${leave.status === "Approved"
+                      ? "bg-success rounded-pill"
+                      : leave.status === "Rejected"
                         ? "bg-danger rounded-pill"
                         : "bg-secondary rounded-pill"
-                    }`}
+                      }`}
                   >
                     {leave.status}
                   </span>
@@ -492,9 +506,8 @@ const ProfilePage = () => {
           ].map((tab) => (
             <li className="nav-item" key={tab}>
               <button
-                className={`nav-link ${
-                  activeTab === tab ? "active fw-bold" : ""
-                }`}
+                className={`nav-link ${activeTab === tab ? "active fw-bold" : ""
+                  }`}
                 onClick={() => setActiveTab(tab)}
               >
                 {tab}
@@ -510,10 +523,10 @@ const ProfilePage = () => {
             {activeTab === "Attendance"
               ? "Add Attandance"
               : activeTab === "Leave Management"
-              ? "Add Leave"
-              : activeTab === "Profile Data"
-              ? "Update Profile Data"
-              : null}
+                ? "Add Leave"
+                : activeTab === "Profile Data"
+                  ? "Update Profile Data"
+                  : null}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -586,6 +599,7 @@ const ProfilePage = () => {
                   className="form-control mb-3"
                   name="firstDate"
                   value={leave.firstDate}
+                  placeholder="DD-MM-YYYY"
                   min={moment().format("YYYY-MM-DD")}
                   onChange={handleProjectInputChange}
                 />
@@ -596,8 +610,9 @@ const ProfilePage = () => {
                       type="date"
                       className="form-control mb-3"
                       name="endDate"
+                      placeholder="DD-MM-YYYY"
                       value={leave.endDate}
-                      min={moment().format("YYYY-MM-DD")}
+                      min={moment(leave.firstDate).add(1, 'days').format("YYYY-MM-DD")}
                       onChange={handleProjectInputChange}
                     />
                   </>
@@ -626,6 +641,42 @@ const ProfilePage = () => {
                 />
               </Form.Group>
             </Form>
+          )}
+          {activeTab === "Profile Data" && (
+            <Form.Group controlId="formBasicName">
+              <Form.Label className="form-label">Name</Form.Label>
+              <Form.Control
+                type="text"
+                className="form-control mb-3"
+                name="name"
+                value={profileData.name}
+                onChange={handleProjectInputChange}
+              />
+              <Form.Label className="form-label">Number</Form.Label>
+              <Form.Control
+                type="text"
+                className="form-control mb-3"
+                name="mobile"
+                value={profileData.mobile}
+                onChange={handleProjectInputChange}
+              />
+              <Form.Label className="form-label">DOB</Form.Label>
+              <Form.Control
+                type="date"
+                className="form-control mb-3"
+                name="dob"
+                value={profileData.dob}
+                onChange={handleProjectInputChange}
+              />
+              <Form.Label className="form-label">Address</Form.Label>
+              <Form.Control
+                as="textarea"
+                className="form-control mb-3"
+                name="address"
+                value={profileData.address}
+                onChange={handleProjectInputChange}
+              />
+            </Form.Group>
           )}
         </Modal.Body>
         <Modal.Footer>
