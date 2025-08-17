@@ -71,8 +71,6 @@ export default function Dashboard() {
   }, [selectedStatus, tasks]);
 
   const handleStatusChange = (newStatus, selectedTaskId) => {
-    console.log("Changing status to:", newStatus);
-    console.log("Selected Task ID:", selectedTaskId);
     if (runningTasks) {
       dispatch(updateTaskStatus({ id: selectedTaskId, status: newStatus }));
       setRunningTasks({ ...runningTasks, status: newStatus });

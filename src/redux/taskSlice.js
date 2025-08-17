@@ -181,7 +181,6 @@ const profileSlice = createSlice({
   initialState: profileInitialState,
   reducers: {
     updateData: (state, action) => {
-      console.log('state', state)
       return { ...state, ...action.payload };
     },
   },
