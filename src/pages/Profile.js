@@ -89,7 +89,6 @@ const ProfilePage = () => {
         }
 
         if (name === "Leave Type") {
-          console.log("Leave type selected:", value);
           updatedData.type = value;
         }
 
@@ -98,7 +97,6 @@ const ProfilePage = () => {
     } else if (activeTab === "Profile Data") {
       setProfileData((prev) => {
         let updatedData = { ...prev, [name]: value };
-        console.log('updatedData', updatedData)
         return updatedData;
       });
     }

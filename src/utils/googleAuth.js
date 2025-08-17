@@ -20,8 +20,6 @@ export const signInWithGoogle = async () => {
   const auth = gapi.auth2.getAuthInstance();
   const user = await auth.signIn();
   const accessToken = user.getAuthResponse().access_token;
-  console.log("auth", auth);
-  console.log("accessToken", accessToken);
   return accessToken;
 };
 

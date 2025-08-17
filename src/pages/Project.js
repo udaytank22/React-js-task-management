@@ -1,24 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "../assets/styles/Project.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addModuleToProject,
-  addProject,
-  deleteProject,
-  updateProject,
-} from "../redux/taskSlice";
 import { FadeIn, FadeInWords } from "../component/Animations";
 import { exportToExcel } from "../component/FileExporter";
+import { useProjectHook } from "../database/hooks/projectHook";
+import { useModuleHook } from "../database/module/hook/moduleHook";
 
 export default function Project() {
   const dispatch = useDispatch();
   const animationRef = useRef();
 
-  const projects = useSelector((state) => state.projects ?? []);
+  // const projects = useSelector((state) => state.projects ?? []);
+  const { projects, createProject, removeProject, updateProject } = useProjectHook();
+  const { createModule, module, refreshModules } = useModuleHook();
+  console.log("Projects module form hook:", module.length);
   const [search, setSearch] = useState("");
 
   const [showProjectModal, setShowProjectModal] = useState(false);
@@ -35,22 +34,32 @@ export default function Project() {
   const [showModuleModal, setShowModuleModal] = useState(false);
   const [showAddModuleModal, setShowAddModuleModal] = useState(false);
   const [currentModuleProject, setCurrentModuleProject] = useState(null);
+  const [currentProjectId, setCurrentProjectId] = useState(null);
   const [moduleFormData, setModuleFormData] = useState({
     module_name: "",
     description: "",
   });
 
+  console.log("Project component rendered", currentModuleProject);
+
   const handleSaveModule = () => {
-    dispatch(
-      addModuleToProject({
-        projectId: currentModuleProject.id,
-        module: {
-          id: Date.now(),
-          module_name: moduleFormData.module_name,
-          description: moduleFormData.description,
-        },
-      })
-    );
+    createModule({
+      project_id: currentProjectId,
+      module: {
+        module_name: moduleFormData.module_name,
+        description: moduleFormData.description,
+      },
+    })
+    // dispatch(
+    //   addModuleToProject({
+    //     projectId: currentModuleProject.id,
+    //     module: {
+    //       id: Date.now(),
+    //       module_name: moduleFormData.module_name,
+    //       description: moduleFormData.description,
+    //     },
+    //   })
+    // );
     setShowAddModuleModal(false);
     setShowModuleModal(true);
   };
@@ -100,26 +109,28 @@ export default function Project() {
 
   const handleSaveProject = () => {
     if (modalMode === "add") {
-      dispatch(
-        addProject({
-          id: Date.now(),
-          ...formData,
-        })
-      );
+      createProject({ ...formData });
+      // dispatch(
+      //   createProject({
+      //     ...formData,
+      //   })
+      // );
     } else {
-      dispatch(
-        updateProject({
-          id: selectedProject.id,
-          ...formData,
-        })
-      );
+      updateProject({ ...formData, id: selectedProject.id, });
+      // dispatch(
+      //   updateProject({
+      //     id: selectedProject.id,
+      //     ...formData,
+      //   })
+      // );
     }
     setShowProjectModal(false);
   };
 
   const handleDeleteProject = (id) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
-      dispatch(deleteProject(id));
+      removeProject(id)
+      // dispatch(deleteProject(id));
     }
   };
 
@@ -127,6 +138,21 @@ export default function Project() {
     const projectName = project?.project_name || "";
     return projectName.toLowerCase().includes(search.toLowerCase());
   });
+
+  const findModuleData = (projectId) => {
+    console.log("Finding modules for project ID:", projectId);
+    refreshModules();
+    const modulesForProject = module.filter((mod) => mod.project_id === projectId);
+    console.log("Modules for project:", modulesForProject);
+    setCurrentModuleProject({
+      project_id: projectId,
+      modules: modulesForProject,
+    });
+  }
+
+  useEffect(() => {
+    findModuleData(currentProjectId);
+  }, [module])
 
   return (
     <div className="mx-5 my-5">
@@ -245,7 +271,8 @@ export default function Project() {
                         <button
                           className="btn btn-sm btn-outline-secondary"
                           onClick={() => {
-                            setCurrentModuleProject(project);
+                            findModuleData(project.id);
+                            setCurrentProjectId(project.id);
                             setShowModuleModal(true);
                           }}
                         >
@@ -350,8 +377,8 @@ export default function Project() {
             <ul className="list-group">
               {currentModuleProject?.modules?.map((module) => (
                 <li key={module.id} className="list-group-item">
-                  <strong>{module.module_name}</strong>
-                  <p className="mb-0">{module.description}</p>
+                  <strong>{module.module?.module_name}</strong>
+                  <p className="mb-0">{module.module?.description}</p>
                 </li>
               ))}
             </ul>
