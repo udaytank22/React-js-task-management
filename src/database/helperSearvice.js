@@ -46,6 +46,7 @@ export async function deleteProject(id) {
 
 // clear all projects
 export async function clearProjects() {
+  console.log("Clearing all projects from IndexedDB");
   const db = await getDB();
   return db.clear("projects");
 }

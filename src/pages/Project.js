@@ -1,21 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "../assets/styles/Project.css";
-import { useDispatch, useSelector } from "react-redux";
 import { FadeIn, FadeInWords } from "../component/Animations";
 import { exportToExcel } from "../component/FileExporter";
 import { useProjectHook } from "../database/hooks/projectHook";
 import { useModuleHook } from "../database/module/hook/moduleHook";
 
 export default function Project() {
-  const dispatch = useDispatch();
   const animationRef = useRef();
 
   // const projects = useSelector((state) => state.projects ?? []);
-  const { projects, createProject, removeProject, updateProject } = useProjectHook();
+  const { projects, createProject, removeProject, updateProject, sendAllProjects } = useProjectHook();
+  console.log("Project component rendered", projects);
   const { createModule, module, refreshModules } = useModuleHook();
   console.log("Projects module form hook:", module.length);
   const [search, setSearch] = useState("");
@@ -40,7 +39,38 @@ export default function Project() {
     description: "",
   });
 
-  console.log("Project component rendered", currentModuleProject);
+  const [selectedFile, setSelectedFile] = useState(null);
+  console.log("Selected file:", selectedFile);
+  const onFileChange = async () => {
+    try {
+      const file = await window.showOpenFilePicker({
+        types: [
+          {
+            description: "Document Files",
+            accept: {
+              "application/pdf": [".pdf"],
+              "applicaiton/json": [".json"],
+            }
+          }
+        ],
+        multiple: true,
+      });
+      const files = await Promise.all(file.map((handle) => handle.getFile()));
+
+      files.forEach((file) => {
+        console.log("File details:");
+        console.log("Name:", file.name);
+        console.log("Size:", (file.size / 1024).toFixed(2), "kb");
+        console.log("Type:", file.type);
+        console.log("Last Modified:", new Date(file.lastModified));
+      });
+    } catch (error) {
+      console.error("Error selecting file:", error);
+      // setTimeout(() => {
+      //   window.alert("File selection was cancelled or failed.");
+      // }, 100)
+    }
+  };
 
   const handleSaveModule = () => {
     createModule({
@@ -110,19 +140,8 @@ export default function Project() {
   const handleSaveProject = () => {
     if (modalMode === "add") {
       createProject({ ...formData });
-      // dispatch(
-      //   createProject({
-      //     ...formData,
-      //   })
-      // );
     } else {
-      updateProject({ ...formData, id: selectedProject.id, });
-      // dispatch(
-      //   updateProject({
-      //     id: selectedProject.id,
-      //     ...formData,
-      //   })
-      // );
+      updateProject({ ...formData, id: selectedProject.id });
     }
     setShowProjectModal(false);
   };
@@ -140,19 +159,13 @@ export default function Project() {
   });
 
   const findModuleData = (projectId) => {
-    console.log("Finding modules for project ID:", projectId);
     refreshModules();
     const modulesForProject = module.filter((mod) => mod.project_id === projectId);
-    console.log("Modules for project:", modulesForProject);
     setCurrentModuleProject({
       project_id: projectId,
       modules: modulesForProject,
     });
   }
-
-  useEffect(() => {
-    findModuleData(currentProjectId);
-  }, [module])
 
   return (
     <div className="mx-5 my-5">
@@ -194,7 +207,8 @@ export default function Project() {
         >
           <button
             className="btn btn-primary"
-            onClick={() => openProjectModal("add")}
+            // onClick={() => openProjectModal("add")}
+            onClick={() => onFileChange()}
           >
             <i className="bi bi-plus-circle me-2"></i> Add Project
           </button>
@@ -205,6 +219,14 @@ export default function Project() {
             }
           >
             <i className="bi bi-arrow-down-circle me-2"></i> Export Excel
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              sendAllProjects()
+            }
+          >
+            <i className="bi bi-arrow-repeat me-2"></i> Sync Data
           </button>
         </FadeInWords>
       </div>
@@ -344,9 +366,9 @@ export default function Project() {
               onChange={handleProjectInputChange}
             >
               <option value="">Select Status</option>
-              <option value="Planning">Planning</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
+              <option value="PLANNING">Planning</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="COMPLETED">Completed</option>
             </select>
           </div>
         </Modal.Body>

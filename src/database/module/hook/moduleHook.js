@@ -24,9 +24,9 @@ export function useModuleHook() {
   }, []);
 
   // useEffect to fetch module when the component mounts
-  useEffect(() => {
-    modules();
-  }, []);
+  // useEffect(() => {
+  //   modules();
+  // }, [modules]);
 
   useEffect(() => {
     if (module) {

@@ -2,20 +2,21 @@ import { use, useCallback, useEffect, useState } from "react";
 import {
   addModule,
   addProject,
+  clearProjects,
   deleteProject,
   getAllProjects,
   updateProjrct,
 } from "../helperSearvice";
+import axios from "axios";
+import { data } from "react-router-dom";
 
 export function useProjectHook() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [dataAdded, setDataAdded] = useState(false);
+  console.log("useProjectHook initialized", dataAdded);
 
   // Function to fetch all projects
-  // This function retrieves all projects from the IndexedDB database.
-  // It uses the getAllProjects helper function to fetch the data,
-  // and manages the loading state during the operation.
-  // It also sets the fetched projects to the state variable 'projects'.s
   const project = useCallback(async () => {
     setLoading(true);
     try {
@@ -28,23 +29,95 @@ export function useProjectHook() {
     }
   }, []);
 
+  async function syncProjectsFromServer() {
+    setLoading(true);
+    try {
+      const res = await axios.get("http://localhost:8000/api/projects/");
+      const serverProjects = res.data.results;
+      console.log("Projects from server:", serverProjects);
+      for (const project of serverProjects) {
+        await addProject(project);
+      }
+      await project(); // refresh local state
+    } catch (error) {
+      console.error("Error syncing projects from server:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const sendAllProjects = async () => {
+    for (const project of projects) {
+      const formData = new FormData();
+      formData.append("project_name", project.project_name);
+      formData.append("description", project.description);
+      formData.append("start_date", project.start_date);
+      formData.append("end_date", project.end_date);
+      formData.append("status", project.status);
+
+      try {
+        const res = await axios.post("http://localhost:8000/api/projects/", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        console.log("✅ Saved project:", res.data);
+        const serverProjects = res.data;
+        setDataAdded(true);
+        await clearProjects(); // remove old data
+        // await project(); // refresh the project list
+        // await addProject([...projects, serverProjects]);
+        await syncProjectsFromServer(); // Sync projects from server
+
+        // 4. Update state for React UI
+        // setProjects([...projects, serverProjects]);
+      } catch (err) {
+        console.error("❌ Error saving project:", err.response?.data || err.message);
+      }
+    }
+  };
+
   // useEffect to fetch projects when the component mounts
   useEffect(() => {
     project();
   }, [project]);
 
-  useEffect(() => {
-    if (projects.length === 5) {
-      console.log("project send to api");
-      // project(); // Fetch projects if the list is empty÷
-    }
-  }, [projects]);
+  // useEffect(() => {
+  //   // if (projects.length === 1) {
+  //   console.log("projects send to api", projects);
+  //   if (projects.length === 3 && dataAdded === false) {
+  //     const sendAllProjects = async () => {
+  //       for (const project of projects) {
+  //         const formData = new FormData();
+  //         formData.append("project_name", project.project_name);
+  //         formData.append("description", project.description);
+  //         formData.append("start_date", project.start_date);
+  //         formData.append("end_date", project.end_date);
+  //         formData.append("status", project.status);
+
+  //         try {
+  //           const res = await axios.post("http://localhost:8000/api/projects/", formData, {
+  //             headers: { "Content-Type": "multipart/form-data" },
+  //           });
+  //           console.log("✅ Saved project:", res.data);
+  //           const serverProjects = res.data;
+  //           setDataAdded(true);
+  //           await clearProjects(); // remove old data
+  //           // await project(); // refresh the project list
+  //           // await addProject([...projects, serverProjects]);
+  //           await syncProjectsFromServer(); // Sync projects from server
+
+  //           // 4. Update state for React UI
+  //           // setProjects([...projects, serverProjects]);
+  //         } catch (err) {
+  //           console.error("❌ Error saving project:", err.response?.data || err.message);
+  //         }
+  //       }
+  //     };
+  //     sendAllProjects();
+  //   }
+
+  // }, [projects]);
 
   // Function to create a new project
-  // This function adds a new project to the IndexedDB database.
-  // It takes the project data as an argument, adds it to the database,
-  // and refreshes the project list.
-  // It also manages the loading state during the operation.
   async function createProject(projectData) {
     setLoading(true);
     try {
@@ -58,10 +131,6 @@ export function useProjectHook() {
   }
 
   // Function to remove a project
-  // This function removes a project from the IndexedDB database.
-  // It takes the project ID as an argument, deletes it from the database,
-  // and refreshes the project list.
-  // It also manages the loading state during the operation.
   async function removeProject(id) {
     setLoading(true);
     try {
@@ -75,10 +144,6 @@ export function useProjectHook() {
   }
 
   // Function to update an existing project
-  // This function updates an existing project in the IndexedDB database.
-  // It takes the project data as an argument, updates it in the database,
-  // and refreshes the project list.
-  // It also manages the loading state during the operation.
   async function updateProject(projectData) {
     setLoading(true);
     try {
@@ -98,5 +163,7 @@ export function useProjectHook() {
     removeProject, // Function to remove a project
     updateProject, // Function to update a project
     refreshProjects: async () => setProjects(await getAllProjects()), // Expose the refresh function
+    sendAllProjects, // Function to send all projects to the server
+    syncProjectsFromServer, // Function to sync projects from the server
   };
 }
