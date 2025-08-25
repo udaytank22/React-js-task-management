@@ -207,8 +207,8 @@ export default function Project() {
         >
           <button
             className="btn btn-primary"
-            // onClick={() => openProjectModal("add")}
-            onClick={() => onFileChange()}
+            onClick={() => openProjectModal("add")}
+          // onClick={() => onFileChange()}
           >
             <i className="bi bi-plus-circle me-2"></i> Add Project
           </button>

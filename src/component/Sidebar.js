@@ -7,6 +7,7 @@ import {
 } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { logout } from "../utils/auth";
+import { FaUserXmark } from "react-icons/fa6";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -21,6 +22,7 @@ export default function Sidebar() {
     { icon: <FaCodepen />, label: "project", path: "/project" },
     { icon: <FaTasks />, label: "Tasks", path: "/tasks" },
     { icon: <FaUserCog />, label: "Profile", path: "/profile" },
+    { icon: <FaUserXmark />, label: "Map", path: "/map" },
   ];
 
   return (

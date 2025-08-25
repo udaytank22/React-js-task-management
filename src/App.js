@@ -12,7 +12,10 @@ import Sidebar from "./component/Sidebar";
 import Project from "./pages/Project";
 import TaskDashboard from "./pages/Tasks";
 import ProfilePage from "./pages/Profile";
+import Map from "./pages/Map";
 import { use, useEffect } from "react";
+import { locationPermission, mediaPermission } from "./utils/permission";
+import { UserLocationProvider } from "./context/UserLocation";
 
 function AppLayout() {
   const location = useLocation();
@@ -62,6 +65,14 @@ function AppLayout() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/map"
+            element={
+              <ProtectedRoute>
+                <Map />
+              </ProtectedRoute>
+            }
+          />
           {/* Default route: redirect from / to /dashboard */}
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
@@ -71,44 +82,17 @@ function AppLayout() {
 }
 
 function App() {
-
-  useEffect(() => {
-    const permission = () => {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // Success callback: Access latitude and longitude
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          console.log("Latitude:", latitude, "Longitude:", longitude);
-          // Update state or perform actions with location data
-        },
-        (error) => {
-          // Error callback: Handle permission denial or other issues
-          console.error("Error getting location:", error.message);
-        },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 } // Optional options
-      );
-
-      navigator.mediaDevices.getUserMedia({
-        video: true,
-      }
-      ).then((stream) => {
-        // Success callback: Handle the media stream
-        console.log("Media stream obtained:", stream);
-        // You can use the stream for audio/video recording or other purposes
-      }).catch((error) => {
-        // Error callback: Handle permission denial or other issues
-        console.error("Error accessing media devices:", error.message);
-      });
-    };
-
-    permission();
-  }, [])
+  // useEffect(() => {
+  //   locationPermission();
+  //   mediaPermission();
+  // }, [])
 
   return (
-    <Router>
-      <AppLayout />
-    </Router>
+    <UserLocationProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </UserLocationProvider>
   );
 }
 
