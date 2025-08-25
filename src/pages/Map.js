@@ -11,7 +11,6 @@ const Map = () => {
     height: '100%'
   }
 
-
   const center = {
     lat: 28.6139, // Example: New Delhi
     lng: 77.2090

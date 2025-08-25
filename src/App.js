@@ -83,9 +83,19 @@ function AppLayout() {
 
 function App() {
   // useEffect(() => {
-  //   locationPermission();
-  //   mediaPermission();
-  // }, [])
+  //   const handleUnload = () => {
+  //     localStorage.removeItem("authToken"); // ✅ remove token
+  //   };
+
+  //   window.addEventListener("beforeunload", handleUnload);
+  //   // also works with "pagehide"
+  //   window.addEventListener("pagehide", handleUnload);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleUnload);
+  //     window.removeEventListener("pagehide", handleUnload);
+  //   };
+  // }, []);
 
   return (
     <UserLocationProvider>

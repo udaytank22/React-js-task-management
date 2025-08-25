@@ -5,25 +5,25 @@ export function setToken(token) {
   if (typeof token !== "string" || token === null || token === undefined) {
     console.error("❌ setToken received an invalid token:", token);
     // Optionally, you might want to remove a stale token if an invalid one is passed
-    // localStorage.removeItem("authToken");
+    // sessionStorage.removeItem("authToken");
     return; // Exit if the token is invalid
   }
 
-  localStorage.setItem("authToken", token);
-  console.log("✅ Token successfully set in localStorage:", token);
+  sessionStorage.setItem("authToken", token);
+  console.log("✅ Token successfully set in sessionStorage:", token);
 }
 
 export function getToken() {
-  const token = localStorage.getItem("authToken");
+  const token = sessionStorage.getItem("authToken");
   console.log("🔍 Calling getToken. Retrieved token:", token);
-  // localStorage.getItem returns null if the item doesn't exist.
+  // sessionStorage.getItem returns null if the item doesn't exist.
   // Returning null directly is often better than implicitly undefined.
   return token;
 }
 
 export function removeToken() {
-  localStorage.removeItem("authToken");
-  console.log("🗑️ Token removed from localStorage.");
+  sessionStorage.removeItem("authToken");
+  console.log("🗑️ Token removed from sessionStorage.");
 }
 
 export function logout() {
